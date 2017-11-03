@@ -13,7 +13,7 @@ building.co to be confirmed!
 You will be developing a Load Board for the shipping industry.
 
 ## Data Assets:
-We are preparing a JSON file to be imported into Firebase, just so you can manipulate/serve the data anyway you want.
+We have prepared a [JSON file](data/ql-v.4.json) to be imported into Firebase, just so you can manipulate/serve the data anyway you want.
 
 ## Design Assets:
 All screens will be ready to go on sketch, the role of the designer will be to.
