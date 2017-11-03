@@ -1,6 +1,6 @@
 
 
-# QUICKLOAD HACK-01 - PROJECT BRIEF
+# Quickload Hack-01 - Project Brief
 Creating a Load-Board in 24 hours with a lean approach.
 
 ### Date/Time:
@@ -9,7 +9,7 @@ November 4-5 from 9am to 9pm
 ### Location:
 building.co to be confirmed!
 
-## PROJECT INFO:
+## Project Goal:
 You will be developing a Load Board for the shipping industry.
 
 ## Data Assets:
