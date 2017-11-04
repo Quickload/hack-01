@@ -8,7 +8,6 @@ export const requestUser = () => ({
 });
 
 export const receiveUser = (json) => {
-  console.log(json);
   return {
     type: RECEIVE_USER,
     user: json,
@@ -21,6 +20,5 @@ export const fetchUserAsync = () => dispatch => {
   // return fetch('https://us-central1-quickload-f4a75.cloudfunctions.net/user?userId=zW1dz12t8DbmaC0dhr5D')
   //   .then(response => response.json())
   //   .then(json => dispatch(receiveUser(json)))
-  console.log(userData);
   dispatch(receiveUser(userData));
 };

@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Helmet from 'react-helmet';
 
+import { getIsFetching, getUser } from '../reducers/user/selector';
 import { fetchUserAsync } from '../actions/doFetchUserAsync';
 
 const hoc = compose(
   connect((state: Object) => ({
-    // jobs: getResults(state),
+    isFetching: getIsFetching(state),
+    user: getUser(state),
   }), (dispatch: Function) => ({
     fetchUser: () => dispatch(fetchUserAsync()),
   })),
@@ -20,13 +22,13 @@ const hoc = compose(
   pure,
 );
 
-const Home = props => (
+const Home = ({user}) => (
   <div>
     <Helmet>
       <title>Home Page</title>
     </Helmet>
 
-    <h1>Home</h1>
+    <h1>Hello, {user && user.name}</h1>
   </div>
 )
 

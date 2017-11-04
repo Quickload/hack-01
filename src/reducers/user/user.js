@@ -1,8 +1,7 @@
-import { combineReducers } from 'redux';
 import {
   REQUEST_USER,
   RECEIVE_USER
-} from '../actions/doFetchUserAsync';
+} from '../../actions/doFetchUserAsync';
 
 const initialState = {
   isFetching: false,

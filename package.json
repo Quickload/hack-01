@@ -15,6 +15,7 @@
     "redux": "^3.7.2",
     "redux-react-firebase": "^2.6.1",
     "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1",
     "styled-components": "^2.2.3"
   },
   "scripts": {

@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   SELECT_JOB,
   REQUEST_JOBS,
