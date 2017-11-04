@@ -3,18 +3,18 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Helmet from 'react-helmet';
 
-import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
+import { fetchUserAsync } from '../actions/doFetchUserAsync';
 
 const hoc = compose(
   connect((state: Object) => ({
     // jobs: getResults(state),
   }), (dispatch: Function) => ({
-    fetchJobs: () => dispatch(fetchJobsAsync()),
+    fetchUser: () => dispatch(fetchUserAsync()),
   })),
   lifecycle({
     componentDidMount() {
-      const {fetchJobs} = this.props;
-      fetchJobs();
+      const {fetchUser} = this.props;
+      fetchUser();
     },
   }),
   pure,
