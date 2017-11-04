@@ -3,20 +3,11 @@ import { Route, Link } from 'react-router-dom';
 import styled, { injectGlobal, ThemeProvider } from 'styled-components';
 import Helmet from 'react-helmet';
 
+import '../styles/styles.css'
+
 import { reset, theme } from '../theme';
 import Home from './Home';
 import About from './About';
-
-const AppHeader = styled.header`
-  text-align: center;
-  background-color: ${theme.colors.grayscale.xDark};
-`;
-
-const StyledLink = styled(Link)`
-  display: inline-block;
-  padding: 20px 10px;
-  color: white;
-`;
 
 const MainWrapper = styled.main`
   width: 100%;
@@ -47,12 +38,6 @@ export const App = () => {
           <meta name="description" content="Our logistics platform connects shippers and truckers, making their lives easier while growing their business." />
           <title>Accelerated Shipping</title>
         </Helmet>
-
-        <AppHeader>
-          <StyledLink to="/">Home</StyledLink>
-          <StyledLink to="/about-us">About</StyledLink>
-        </AppHeader>
-
         <MainWrapper>
           <Route exact path="/" component={Home} />
           <Route exact path="/about-us" component={About} />
