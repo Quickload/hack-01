@@ -1,0 +1,97 @@
+@charset "UTF-8";
+/* Quick load */
+
+body{	margin:0px; padding:0px; background-color:#F7F7F7;	font-family: 'Roboto', sans-serif;	color:#535353; letter-spacing:-0.5px; padding-top:70px;}
+
+/* Global Styles*/
+.container{	max-width:678px;}
+.card{background-color:#fff;box-shadow:0 3px 6px RGBA(0,0,0,.16);border-radius:10px;padding:15px; border:none; margin-top:15px;}
+hr{clear:both;border:none; border-bottom:1px dotted #CCCCCC;height:1px;margin:12px 0px;}
+.dropdown{background-color:#fff;color:#7D7D7D;font-weight:normal;}
+h1{font-size:20px; font-weight:bold; }
+a{color:#FF5A00; font-weight:bold;}
+.btn{text-transform: uppercase; color:#fff; font-size:17px; font-weight: bold}
+.up{text-transform: uppercase;}
+.m0p0{margin:0px; padding:0px;}
+.textRight{text-align:right!important;}
+.textCenter{text-align:center!important;}
+.textLeft{text-align: left!important}
+
+.field{display:block;  clear:both; margin:10px 0px;}
+.fullw{width:100%;}
+.fullw input{width:100%}
+.fullw button{width:100%}
+
+.p0{padding:0px}
+
+/* color palette */
+.dark{color:#414141!important;}
+.lighter{color:#535353!important;}
+.teal{color:#7ABAAB!important}
+.secOrange{color:#F88900!important}
+.brandOrange{color:#FF5A00!important}
+.accentOrange{color:#DD908B!important}
+.lightGray{color:#9B9B9B!important}
+
+.whiteBG{background-color: #fff!important}
+.darkBG{background:#7D7D7D!important; color:#fff!important;}
+.lightBG{background:#CCCCCC!important;}
+.orangeBG{background:#FF5A00!important; color:#fff!important}
+/* ----------------------*/
+
+/* header*/
+header{position:fixed; top:0px; left:0px; width:100%; height:70px; padding:15px; background-color:#4A4A4A; z-index:1000;}
+
+/*my queue*/
+.emptyState{padding:200px 0px 0px 0px;}
+.emptyState img{margin-bottom:25px; opacity:.6;}
+.emptyState p{font-size:13px; color:#9A9A9A; font-weight:bold}
+
+/* Search */
+.searchHeader{padding:0px; background-color:#fff; width:100%; line-height:60px}
+.quickLoad{font-size:18px; font-weight:bold;display: inline-block;    line-height: 30px;    padding-left: 15px;}
+.quickLoadSort{text-transform: none;font-weight: normal;background-color: transparent;border: none;color: #535353; width:100%; display: inline-block; text-align: right}
+.locationSearch{font-size:18px; font-weight:normal;display: inline-block;    line-height: 30px;    padding-left: 15px;}
+.tagArea{padding:15px}
+.tag{display:inline-block; margin:0px 10px 10px 0px; font-size:16px; padding:3px 5px; border-radius:8px; background-color:#fff;}
+.removeTag{padding:0px 5px; display:inline-block}
+.search{    margin-left: -15px; border: none; padding: 0px 15px; width: 100%;}
+.dropdown-menu{width:100%}
+
+
+
+/* details text styling */
+.city {	font-size: 20px;	font-weight: bold;	letter-spacing: -0.5px;}
+.port{font-size:13px; font-weight:normal; }
+.orderNum{font-size:14px; font-weight:bold; text-transform: uppercase; color:#7b7b7b}
+.pickupDate{font-size:13px; font-weight:normal; }
+.price{font-size:24px; font-weight:bold; display:block; margin-top:20px}
+.distance{font-size:12px; font-weight:normal}
+.destination{font-size:16px; font-weight:bold;}
+.addressLabel{font-size:12px; text-transform: uppercase; font-weight:bold; display:block; margin-bottom:0px; padding-top:5px;}
+.address{font-size:16px; }
+.badge{border:.5px solid #ebebeb;}
+.meta{color:#7d7d7d; font-size:13px; font-weight:normal;}
+span.orderNum img { width: 18px;  margin-left: 5px; height: auto; margin-top: -5px;}
+.details span.orderNum{top:8px; position:relative;}
+.details{padding-top:30px}
+.details .price{margin-top:0px}
+.details hr.double{width:100%; height:1.5px; background-color:#f7f7f7; border:none!Important}
+img.pickIcon{width:50px; height:auto; margin-right:10px;}
+.detailsRight{padding-top:5px}
+.pickDrop{margin-bottom:15px}
+
+/* ----------------------*/
+
+
+/* sign up styling */
+.cancel{font-size:13px; font-weight:bold}
+.startRoute{background-color:#FF6A19; border:1px solid #FF8340; }
+.field label{font-size: 12px;  margin-bottom: 0px;}
+.field input{border:1px solid #E4E4E4; padding:10px; font-weight:bold}
+.field input::placeholder{color:#E3E3E3}
+
+/* confirmed */
+.status{padding:25px 15px; font-size:16px; color:#999}
+.status strong{font-weight: bold; color: #535353}
+.orangeBG a.btn.orangeBG {  border: 1px solid #fff!important;  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.17);}
