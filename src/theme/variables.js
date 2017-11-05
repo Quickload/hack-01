@@ -3,18 +3,18 @@ export default {
   viewports: {
     small: {
       minWidth: 0,
-      maxWidth: 767,
+      maxWidth: 578,
     },
     medium: {
+      minWidth: 579,
+      maxWidth: 767,
+    },
+    large: {
       minWidth: 768,
       maxWidth: 1023,
     },
-    large: {
-      minWidth: 1024,
-      maxWidth: 1439,
-    },
     xlarge: {
-      minWidth: 1440,
+      minWidth: 1024,
     },
   },
 

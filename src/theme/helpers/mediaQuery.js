@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import variables from '../../themes/variables';
+import variables from '../variables';
 
 const sizes = variables.viewports;
 

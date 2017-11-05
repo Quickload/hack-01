@@ -1,18 +1,7 @@
 import React from 'react';
-import styled, {keyframes} from 'styled-components';
+import styled from 'styled-components';
 
-const LoaderWrapper = styled.div`
-  position: relative;
-  height: 100px;
-`;
-
-const loaderAnimation = keyframes`
-  0% { left: 0; height: 30px; width: 15px }
-  50% { height: 8px; width: 40px }
-  100% { left: 235px; height: 30px; width: 15px}
-`;
-
-const StyledLoader = styled.div`
+const StyledCard = styled.div`
   width: 250px;
   height: 50px;
   line-height: 50px;

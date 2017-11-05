@@ -77,7 +77,7 @@ export default (theme) => `
     display: block;
     height: 1px;
     padding: 0;
-    margin: ${theme.spacing.medium}px 0;
+    margin: ${theme.spacing.small}px 0;
     border: 0;
     border-top: 1px solid ${theme.colors.muted};
   }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-search_opened</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/icon-search_opened" transform="translate(-4.000000, -4.000000)">
+            <g id="icon-search_opened">
+                <rect id="icon-bg" fill="#4A4A4A" opacity="0" x="0" y="0" width="32" height="32"></rect>
+                <path d="M27.2995,27.2995 C26.8776928,27.721555 26.3054507,27.9586838 25.70875,27.9586838 C25.1120493,27.9586838 24.5398072,27.721555 24.118,27.2995 L20.1475,23.329 C18.514,24.3745 16.5835,25 14.5,25 C8.701,25 4,20.299 4,14.5 C4,8.701 8.701,4 14.5,4 C20.299,4 25,8.701 25,14.5 C25,16.5835 24.3745,18.514 23.329,20.1475 L27.2995,24.118 C27.721555,24.5398072 27.9586838,25.1120493 27.9586838,25.70875 C27.9586838,26.3054507 27.721555,26.8776928 27.2995,27.2995 L27.2995,27.2995 Z M14.5,7 C10.3585,7 7,10.357 7,14.5 C7,18.643 10.3585,22 14.5,22 C18.643,22 22,18.643 22,14.5 C22,10.357 18.643,7 14.5,7 Z" id="search" fill="#F88900" fill-rule="nonzero"></path>
+            </g>
+        </g>
+    </g>
+</svg>
