@@ -3,7 +3,7 @@ import styled, {keyframes} from 'styled-components';
 
 const LoaderWrapper = styled.div`
   position: relative;
-  margin: 60px 0 100px;
+  margin: 200px 0;
 `;
 
 const loaderAnimation = keyframes`
