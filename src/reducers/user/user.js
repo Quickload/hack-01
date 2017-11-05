@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   isFetching: false,
-  didInvalidate: false,
+  hasError: false,
   user: null
 };
 
@@ -15,13 +15,13 @@ export const user = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        didInvalidate: false,
+        hasError: false,
       };
     case RECEIVE_USER:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false,
+        hasError: false,
         user: action.user,
         lastUpdated: action.receivedAt,
       };

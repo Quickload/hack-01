@@ -1,27 +1,24 @@
+import jobsData from '../data/jobs';
+
 export const REQUEST_JOBS = 'REQUEST_JOBS';
 export const RECEIVE_JOBS = 'RECEIVE_JOBS';
-export const SELECT_JOB = 'SELECT_JOB';
 
-export const selectJob = job => ({
-  type: SELECT_JOB,
-  job,
-});
-
-export const requestJobs = jobs => ({
+export const isFetchingJobs = () => ({
   type: REQUEST_JOBS,
-  jobs,
 });
 
-export const receiveJobs = (jobs, json) => ({
-  type: RECEIVE_JOBS,
-  jobs,
-  posts: json.data.children.map(child => child.data),
-  receivedAt: Date.now(),
-});
+export const receivedJobs = (json) => {
+  return {
+    type: RECEIVE_JOBS,
+    jobs: json,
+    receivedAt: Date.now(),
+  };
+};
 
-export const fetchJobsAsync = job => dispatch => {
-  dispatch(requestJobs(job));
-  return fetch('https://us-central1-job-f4a75.cloudfunctions.net/jobs')
-    .then(response => response.json())
-    .then(json => dispatch(receiveJobs(job, json)))
+export const fetchJobsAsync = () => dispatch => {
+  dispatch(isFetchingJobs());
+  // return fetch('https://us-central1-quickload-f4a75.cloudfunctions.net/jobs?jobsId=zW1dz12t8DbmaC0dhr5D')
+  //   .then(response => response.json())
+  //   .then(json => dispatch(receivedJobs(json)))
+  dispatch(receivedJobs(jobsData));
 };

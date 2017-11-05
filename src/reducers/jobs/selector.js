@@ -1,0 +1,13 @@
+import { createSelector } from 'reselect';
+
+export const getJobsState = state => state && state.jobs;
+
+export const getIsFetchingJobs = createSelector(
+  getJobsState,
+  jobs => (jobs && jobs.isFetching) || false
+);
+
+export const getJobs = createSelector(
+  getJobsState,
+  jobs => (jobs && jobs.jobs) || null
+);

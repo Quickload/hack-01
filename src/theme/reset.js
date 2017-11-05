@@ -106,11 +106,13 @@ export default (theme) => `
   }
 
   ::-moz-selection {
+    color: ${theme.colors.light};
     background: ${theme.colors.info.light};
     text-shadow: none;
   }
 
   ::selection {
+    color: ${theme.colors.light};
     background: ${theme.colors.info.light};
     text-shadow: none;
   }

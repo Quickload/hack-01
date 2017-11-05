@@ -3,23 +3,22 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Helmet from 'react-helmet';
 
-import { getIsFetching, getUser } from '../reducers/user/selector';
 import { fetchUserAsync } from '../actions/doFetchUserAsync';
-import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
+import { getIsFetchingUser, getUser } from '../reducers/user/selector';
 
 const hoc = compose(
-  connect((state: Object) => ({
-    isFetching: getIsFetching(state),
+  connect((state) => ({
+    isFetchingUser: getIsFetchingUser(state),
     user: getUser(state),
-  }), (dispatch: Function) => ({
+  }), (dispatch) => ({
     fetchUser: () => dispatch(fetchUserAsync()),
-    fetchJobs: () => dispatch(fetchJobsAsync()),
   })),
   lifecycle({
     componentDidMount() {
-      const {fetchUser, fetchJobs} = this.props;
-      fetchUser();
-      fetchJobs();
+      const {isFetchingUser, user, fetchUser} = this.props;
+      if (!isFetchingUser && !user) {
+        fetchUser();
+      }
     },
   }),
   pure,

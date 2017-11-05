@@ -1,22 +1,12 @@
 import {
-  SELECT_JOB,
   REQUEST_JOBS,
   RECEIVE_JOBS
-} from '../actions/doFetchJobsAsync';
-
-export const selectedJob = (state = null, action) => {
-  switch (action.type) {
-    case SELECT_JOB:
-      return action.jobs;
-    default:
-      return state;
-  }
-};
+} from '../../actions/doFetchJobsAsync';
 
 const initialState = {
   isFetching: false,
-  didInvalidate: false,
-  items: null,
+  hasError: false,
+  jobs: null,
 };
 
 export const jobs = (state = initialState, action) => {
@@ -25,14 +15,14 @@ export const jobs = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        didInvalidate: false,
+        hasError: false,
       }
     case RECEIVE_JOBS:
       return {
         ...state,
         isFetching: false,
-        didInvalidate: false,
-        items: action.jobs,
+        hasError: false,
+        jobs: action.jobs,
         lastUpdated: action.receivedAt,
       }
     default:

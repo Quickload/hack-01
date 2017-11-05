@@ -3,11 +3,11 @@ import userData from '../data/user';
 export const REQUEST_USER = 'REQUEST_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
 
-export const requestUser = () => ({
+export const isFetchingUser = () => ({
   type: REQUEST_USER,
 });
 
-export const receiveUser = (json) => {
+export const receivedUser = (json) => {
   return {
     type: RECEIVE_USER,
     user: json,
@@ -16,9 +16,9 @@ export const receiveUser = (json) => {
 };
 
 export const fetchUserAsync = () => dispatch => {
-  dispatch(requestUser());
+  dispatch(isFetchingUser());
   // return fetch('https://us-central1-quickload-f4a75.cloudfunctions.net/user?userId=zW1dz12t8DbmaC0dhr5D')
   //   .then(response => response.json())
-  //   .then(json => dispatch(receiveUser(json)))
-  dispatch(receiveUser(userData));
+  //   .then(json => dispatch(receivedUser(json)))
+  dispatch(receivedUser(userData));
 };

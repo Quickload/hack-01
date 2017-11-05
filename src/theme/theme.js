@@ -11,8 +11,8 @@ export default {
     },
     primary: {
       xLight: '#FFD4F6',
-      light: '#AF639F',
-      base: '#692E5C',
+      light: '#F88900',
+      base: '#FF5A00',
       dark: '#300A35',
     },
     secondary: {
@@ -48,12 +48,13 @@ export default {
 
     // Gray Scale
     grayscale: {
-      xxLight: '#F8F8F8',
-      xLight: '#E6E6E6',
-      light: '#D6D6D6',
-      base: '#9B9B9B',
-      dark: '#717171',
-      xDark: '#4A4A4A',
+      xxLight: '#F7F7F7',
+      xLight: '#E3E3E3',
+      light: '#CCCCCC',
+      base: '#9A9A9A',
+      dark: '#7D7D7D',
+      xDark: '#535353',
+      xxDark: '#4A4A4A',
     },
 
     // Misc
