@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, lifecycle } from 'recompose';
+import { compose, pure, withHandlers, lifecycle } from 'recompose';
+import { withRouter } from 'react-router'
 import styled from 'styled-components';
 
 import App from './App';
@@ -15,11 +16,8 @@ const SearchListWrapper = styled.div`
   margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
 `;
 
-const JobCardLink = styled(JobCard) `
-  cursor: pointer;
-`;
-
 const hoc = compose(
+  withRouter,
   connect((state) => ({
     isFetchingJobs: getIsFetchingJobs(state),
     jobs: getJobs(state),
@@ -27,17 +25,22 @@ const hoc = compose(
     fetchJobs: () => dispatch(fetchJobsAsync()),
     clearSelectedJob: () => dispatch(clearSelectedJobAction())
   })),
-  lifecycle({
-    componentDidMount() {
-      const { fetchJobs, clearSelectedJob } = this.props;
-      fetchJobs();
-      clearSelectedJob();
-    },
+  withHandlers({
+    cardRedirect: ({ history }) => id => {
+      history.push(`/job/${id}`);
+    }
   }),
+lifecycle({
+  componentDidMount() {
+    const { fetchJobs, clearSelectedJob } = this.props;
+    fetchJobs();
+    clearSelectedJob();
+  },
+}),
   pure,
 );
 
-const Search = ({ isFetchingJobs, jobs }) => (
+const Search = ({ isFetchingJobs, jobs, cardRedirect }) => (
   <App>
     {isFetchingJobs ?
       <Loader />
@@ -51,7 +54,9 @@ const Search = ({ isFetchingJobs, jobs }) => (
                 key={Math.random().toString(36).substring(2, 15)}
                 className="col-6"
               >
-                <JobCardLink job={job} />
+                <JobCard
+                  cardRedirect={cardRedirect}
+                  job={job} />
               </div>
             ) :
               <p>No jobs yet...</p>
