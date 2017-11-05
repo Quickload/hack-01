@@ -14,6 +14,8 @@ const initialState = {
   isFetching: false,
   error: null,
   jobs: null,
+  isFetchingSelectedJob: false,
+  selectedJobError: null,
   selectedJob: null
 };
 
@@ -42,20 +44,20 @@ export const jobs = (state = initialState, action) => {
     case IS_FETCHING_SELECTED_JOB:
       return {
         ...state,
-        isFetching: true,
-        error: null,
+        isFetchingSelectedJob: true,
+        selectedJobError: null,
       }
     case FAILED_SELECTED_JOB:
       return {
         ...state,
-        isFetching: false,
-        error: action.error,
+        isFetchingSelectedJob: false,
+        selectedJobError: action.error,
       }
     case SELECTED_JOB:
       return {
         ...state,
-        isFetching: false,
-        error: null,
+        isFetchingSelectedJob: false,
+        selectedJobError: null,
         selectedJob: action.selectedJob,
         lastUpdated: action.receivedAt,
       }

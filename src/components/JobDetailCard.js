@@ -18,24 +18,24 @@ const JobDetailCard = ({ job }) => (
             <div className="details">
                 <div className="row">
                     <div className="col-6">
-                        <span className="city">Miami</span>
-                        <span className="port">Port of Miami</span>
-                        <span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
+                        <span className="city">{job.PickCity}</span>
+                        <span className="port">{job.PickStation}</span>
+                        <span className="pickupDate teal"><img src="img/icons/pick.svg" /> {job.PickDate}, {job.PickTime}</span>
                     </div>
                     <div className="col-6 textRight detailsRight">
                         <span className="distance">350 miles to</span>
-                        <span className="destination">Sebatian</span>
-                        <span className="port">Port of Miami</span>
-                        <span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
+                        <span className="destination">{job.DropCity}</span>
+                        <span className="port">{job.PickStation}</span>
+                        <span className="pickupDate accentOrange">{job.PickDate}, {job.PickTime}<img src="img/icons/drop.svg" /></span>
                     </div>
                 </div>
                 <hr />
                 <div className="row">
                     <div className="col-6">
-                        <span className="orderNum">Rw5t1j4 <img src="img/icons/icon-pin-orange.svg" width="20" /></span>
+                        <span className="orderNum">{job.QLNumber}<img src="img/icons/icon-pin-orange.svg" width="20" /></span>
                     </div>
                     <div className="col-6 textRight">
-                        <span className="price">$300.00</span>
+                        <span className="price">{job.QuotePrice}</span>
                     </div>
                     <div className="col-12">
                         <hr />
