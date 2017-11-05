@@ -5,12 +5,13 @@ import styled from 'styled-components';
 
 import App from './App';
 import Loader from '../components/shared/Loader';
+import Filter from './Filter';
 import JobCard from '../components/JobCard';
 import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
 
 const SearchListWrapper = styled.div`
-  margin: ${({theme}) => theme.spacing.medium}px 0;
+  margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
 `;
 
 const hoc = compose(
@@ -34,13 +35,23 @@ const Search = ({isFetchingJobs, jobs}) => (
     {isFetchingJobs ?
       <Loader />
     :
-      <SearchListWrapper>
-        {jobs ? jobs.map(job =>
-          <JobCard key={Math.random().toString(36).substring(2, 15)} job={job} />
-        ) :
-          <p>No jobs yet...</p>
-        }
-      </SearchListWrapper>
+      <div>
+        <Filter />
+        <SearchListWrapper>
+          <div className="row">
+            {jobs ? jobs.map(job =>
+              <div
+                key={Math.random().toString(36).substring(2, 15)}
+                className="col-6"
+              >
+                <JobCard job={job} />
+              </div>
+            ) :
+              <p>No jobs yet...</p>
+            }
+          </div>
+        </SearchListWrapper>
+      </div>
     }
   </App>
 );

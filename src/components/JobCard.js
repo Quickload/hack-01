@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { pure } from 'recompose';
-import styled from 'styled-components';
 
-import orangePickUpIcon from '../images/icons/icon-pin-orange.svg';
 import pickUpIcon from '../images/icons/pick.svg';
 import dropOffIcon from '../images/icons/drop.svg';
 
