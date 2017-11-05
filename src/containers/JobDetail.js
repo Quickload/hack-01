@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import App from './App';
 import Loader from '../components/shared/Loader';
-import Filter from './Filter';
 import JobDetailCard from '../components/JobDetailCard';
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';

@@ -10,6 +10,7 @@ export const isFetchingJobs = () => ({
   type: REQUEST_JOBS,
 });
 
+
 export const failedToRetreiveJobs = (error) => ({
   type: FAILED_JOBS,
   error

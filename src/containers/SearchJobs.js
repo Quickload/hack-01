@@ -9,9 +9,14 @@ import Filter from './Filter';
 import JobCard from '../components/JobCard';
 import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
+import { clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
 const SearchListWrapper = styled.div`
-  margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
+  margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
+`;
+
+const JobCardLink = styled(JobCard) `
+  cursor: pointer;
 `;
 
 const hoc = compose(
@@ -20,21 +25,23 @@ const hoc = compose(
     jobs: getJobs(state),
   }), (dispatch) => ({
     fetchJobs: () => dispatch(fetchJobsAsync()),
+    clearSelectedJob: () => dispatch(clearSelectedJobAction())
   })),
   lifecycle({
     componentDidMount() {
-      const {fetchJobs} = this.props;
+      const { fetchJobs, clearSelectedJob } = this.props;
       fetchJobs();
+      clearSelectedJob();
     },
   }),
   pure,
 );
 
-const Search = ({isFetchingJobs, jobs}) => (
+const Search = ({ isFetchingJobs, jobs }) => (
   <App>
     {isFetchingJobs ?
       <Loader />
-    :
+      :
       <div>
         <Filter />
         <SearchListWrapper>
@@ -44,7 +51,7 @@ const Search = ({isFetchingJobs, jobs}) => (
                 key={Math.random().toString(36).substring(2, 15)}
                 className="col-6"
               >
-                <JobCard job={job} />
+                <JobCardLink job={job} />
               </div>
             ) :
               <p>No jobs yet...</p>

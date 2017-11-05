@@ -1,7 +1,6 @@
 import { createSelector } from 'reselect';
 
 export const getJobsState = state => state && state.jobs;
-// export const selectedJobState = state => state && state.selectedJob
 
 export const getIsFetchingJobs = createSelector(
   getJobsState,

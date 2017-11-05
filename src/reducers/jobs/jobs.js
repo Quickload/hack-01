@@ -8,6 +8,7 @@ import {
   SELECTED_JOB,
   IS_FETCHING_SELECTED_JOB,
   FAILED_SELECTED_JOB,
+  CLEAR_SELECTED_JOB,
 } from '../../actions/doFetchSelectedJobAsync';
 
 const initialState = {
@@ -60,6 +61,11 @@ export const jobs = (state = initialState, action) => {
         selectedJobError: null,
         selectedJob: action.selectedJob,
         lastUpdated: action.receivedAt,
+      }
+    case CLEAR_SELECTED_JOB:
+      return {
+        ...state,
+        selectedJob: null,
       }
     default:
       return state
