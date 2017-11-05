@@ -96,6 +96,16 @@ const Home = props => (
 		<span className="tag secOrange">Near Me <a href="#" className="removeTag"><img src="../svg/icons/icon-close-sm.svg" /></a></span>
 	</div>
 </div>
+	<div className="container searchCTAs">
+	<div className="row">
+		<div className="col-6 textRight">
+			<a href="#" className="btnLink">CLEAR</a>
+		</div>
+		<div className="col-6 textLeft">
+			<a href="#" className="btn orangeBG">Search</a>
+		</div>
+	</div>
+</div>
 	<div className="container">
 		<!-- start pickup option -->
 		<div className="card">

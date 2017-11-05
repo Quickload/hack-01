@@ -49,10 +49,10 @@ const Home = props => (
 					  <span className="filterBy">Filter By:</span> Pickup City
 				  </a>
 				  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a className="dropdown-item" href="#">Dropoff City</a>
-					<a className="dropdown-item" href="#">Load Type</a>
-					<a className="dropdown-item" href="#">Truck Type</a>
-					<a className="dropdown-item" href="#">Accessorial</a>
+						<a className="dropdown-item" href="#">Dropoff City</a>
+						<a className="dropdown-item" href="#">Load Type</a>
+						<a className="dropdown-item" href="#">Truck Type</a>
+						<a className="dropdown-item" href="#">Accessorial</a>
 					</div>
 				</div>
 			</div>
@@ -85,6 +85,16 @@ const Home = props => (
       </div>
       </div>
   </div>
+	<div class="container searchCTAs">
+	<div class="row">
+		<div class="col-6 textRight">
+			<a href="#" class="btnLink">CLEAR</a>
+		</div>
+		<div class="col-6 textLeft">
+			<a href="#" class="btn orangeBG">Search</a>
+		</div>
+	</div>
+</div>
 	<div className="container">
 		<div className="card">
 			<div className="row">
