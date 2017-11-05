@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import styled, { injectGlobal, ThemeProvider } from 'styled-components';
+import { injectGlobal, ThemeProvider } from 'styled-components';
 import Helmet from 'react-helmet';
 
 import './styles/styles.css'
@@ -8,13 +8,6 @@ import './styles/styles.css'
 import { reset, theme } from './theme';
 import SplashPage from './containers/SplashPage';
 import SearchJobs from './containers/SearchJobs';
-
-// const MainWrapper = styled.main`
-//   width: 100%;
-//   max-width: 768px;
-//   margin: 0 auto;
-//   padding: 60px 20px 0;
-// `;
 
 export const App = () => {
   injectGlobal`
