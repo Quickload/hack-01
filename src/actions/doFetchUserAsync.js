@@ -1,10 +1,16 @@
-import userData from '../data/user';
+import axios from 'axios';
 
 export const REQUEST_USER = 'REQUEST_USER';
 export const RECEIVE_USER = 'RECEIVE_USER';
+export const FAILED_USER = 'FAILED_USER';
 
 export const isFetchingUser = () => ({
   type: REQUEST_USER,
+});
+
+export const failedToRetreiveUser = (error) => ({
+  type: FAILED_USER,
+  error
 });
 
 export const receivedUser = (json) => {
@@ -15,10 +21,16 @@ export const receivedUser = (json) => {
   };
 };
 
-export const fetchUserAsync = () => dispatch => {
+export const fetchUserAsync = (userId = 'zW1dz12t8DbmaC0dhr5D') => dispatch => {
   dispatch(isFetchingUser());
-  // return fetch('https://us-central1-quickload-f4a75.cloudfunctions.net/user?userId=zW1dz12t8DbmaC0dhr5D')
-  //   .then(response => response.json())
-  //   .then(json => dispatch(receivedUser(json)))
-  dispatch(receivedUser(userData));
+  axios.get('https://us-central1-quickload-f4a75.cloudfunctions.net/user', {
+    params: {userId}
+  })
+    .then(function (response) {
+      dispatch(receivedUser(response.data));
+    })
+    .catch(function (error) {
+      console.log(error);
+      dispatch(failedToRetreiveUser(error));
+    });
 };

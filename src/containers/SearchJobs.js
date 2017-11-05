@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import styled from 'styled-components';
 
-import QuickLoader from '../components/shared/QuickLoader';
+import Loader from '../components/shared/Loader';
 import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
 
@@ -27,13 +27,13 @@ const hoc = compose(
   pure,
 );
 
-const Search = ({isFetchingUser, jobs}) => (
-  isFetchingUser && !jobs && !jobs.length ?
-    <QuickLoader />
+const Search = ({isFetchingJobs, jobs}) => (
+  isFetchingJobs ?
+    <Loader />
   :
     <SearchListWrapper>
       {jobs ? jobs.map(job =>
-        <div key={job.UserPoNumber} className="card">
+        <div key={Math.random().toString(36).substring(2, 15)} className="card">
           <div className="row">
             <div className="col-6">
               <div className="city">{job.PickCity}</div>

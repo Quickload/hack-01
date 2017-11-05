@@ -2,9 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose, pure, lifecycle } from 'recompose';
 import Helmet from 'react-helmet';
+import styled from 'styled-components';
 
+import QuickLoader from '../components/shared/QuickLoader';
 import { fetchUserAsync } from '../actions/doFetchUserAsync';
 import { getIsFetchingUser, getUser } from '../reducers/user/selector';
+
+const HomeWrapper = styled.div`
+  text-align: center;
+  margin: ${({theme}) => theme.spacing.large}px 0;
+`;
+
+const ErrorMessage = styled.div`
+  font-weight: bold;
+  color: ${({theme}) => theme.colors.danger.base};
+`;
 
 const hoc = compose(
   connect((state) => ({
@@ -24,13 +36,25 @@ const hoc = compose(
   pure,
 );
 
-const Home = ({user}) => (
+const Home = ({isFetchingUser, user}) => (
   <div>
     <Helmet>
       <title>Home Page</title>
     </Helmet>
 
-    <h1>Hello, {user && user.name}</h1>
+    {isFetchingUser ?
+      <QuickLoader />
+    :
+      <HomeWrapper>
+        {user ?
+          <h1>Hello, {user.name}</h1>
+        :
+          <ErrorMessage>
+            Sorry, we're having trouble getting your user info.
+          </ErrorMessage>
+      }
+      </HomeWrapper>
+    }
   </div>
 )
 

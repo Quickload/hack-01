@@ -1,11 +1,12 @@
 import {
   REQUEST_JOBS,
-  RECEIVE_JOBS
+  RECEIVE_JOBS,
+  FAILED_JOBS,
 } from '../../actions/doFetchJobsAsync';
 
 const initialState = {
   isFetching: false,
-  hasError: false,
+  error: null,
   jobs: null,
 };
 
@@ -15,13 +16,19 @@ export const jobs = (state = initialState, action) => {
       return {
         ...state,
         isFetching: true,
-        hasError: false,
+        error: null,
+      }
+    case FAILED_JOBS:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
       }
     case RECEIVE_JOBS:
       return {
         ...state,
         isFetching: false,
-        hasError: false,
+        error: null,
         jobs: action.jobs,
         lastUpdated: action.receivedAt,
       }
