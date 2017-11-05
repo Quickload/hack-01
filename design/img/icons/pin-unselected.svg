@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>pin-o</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M13.375,5.75 L13.375,12.75 C13.8582492,12.75 14.25,13.1417508 14.25,13.625 L14.25,14.5 L3.75,14.5 L3.75,13.625 C3.75,13.1417508 4.14175084,12.75 4.625,12.75 L4.625,5.75 C4.14175084,5.75 3.75,5.35824916 3.75,4.875 L3.75,4 L14.25,4 L14.25,4.875 C14.25,5.35824916 13.8582492,5.75 13.375,5.75 Z M8.125,14.5 L9.875,14.5 L9.875,17.125 C9.875,17.6082492 9.48324916,18 9,18 C8.51675084,18 8.125,17.6082492 8.125,17.125 L8.125,14.5 Z M11.625,5.75 L6.375,5.75 L6.375,12.75 L11.625,12.75 L11.625,5.75 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/pin" transform="translate(-2.000000, -2.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="pin-o" fill="#979797" fill-rule="nonzero" transform="translate(9.000000, 11.000000) rotate(45.000000) translate(-9.000000, -11.000000) " xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

@@ -25,7 +25,7 @@ const hoc = compose(
 
 const Home = props => (
 <div>
-  <header className="">
+  <header className="header">
 <div className="container">
 			<div className="row">
 				<div className="col-8 float-left">
@@ -39,16 +39,16 @@ const Home = props => (
 	</header>
 <div className="container whiteBG">
 	<div className="details">
-			
+
 			<div className="row">
 				<div className="col-6">
 					<span className="city">Miami</span>
 					<span class="port">Port of Miami</span>
-					<span class="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span class="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div class="col-6 textRight detailsRight">
-					<span class="distance">350 miles to</span> 
-					<span class="destination">Sebatian</span>					
+					<span class="distance">350 miles to</span>
+					<span class="destination">Sebatian</span>
 					<span class="port">Port of Miami</span>
 					<span class="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
@@ -85,8 +85,8 @@ const Home = props => (
 				<div class="col-12 map">
 					<img src="img/map.png" width="100%">
 				</div>
-				
-			</div>		
+
+			</div>
 		</div>
 	</div>
 </div>

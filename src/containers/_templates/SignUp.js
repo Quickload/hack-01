@@ -25,45 +25,23 @@ const hoc = compose(
 
 const Home = props => (
 <div>
-  <header className="">
+  <header className="header">
 	<div className="container">
 			<div className="row">
 				<div className="col-8 col-xs-8 float-left">
-				<a href="#"><img src="../svg/icons/quickload-truck.svg" /></a>
+				<a href="#"><img src="img/icons/quickload-truck.svg" /></a>
 				</div>
 				<div className="col-2 col-xs-2 float-right">
-					<a href="#"><img src="../svg/icons/icon-pin.svg" /></a>
+					<a href="#"><img src="img/icons/icon-pin.svg" /></a>
 				</div>
 				<div className="col-2 float-right">
-					<a href="#"><img src="../svg/icons/icon-search.svg" /></a>
+					<a href="#"><img src="img/icons/icon-search.svg" /></a>
 				</div>
 		</div>
 		</div>
 	</header>
   <div className="container p0">
-  <div className="searchHeader">
-			<div className="row">
-			<div className="col-12">
-				<div className="dropdown">
-				  <a className="btn quickLoadSort dropdown-toggle textLeft"  href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  <span className="filterBy">Filter By:</span> Pickup City
-				  </a>
-				  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a className="dropdown-item" href="#">Dropoff City</a>
-						<a className="dropdown-item" href="#">Load Type</a>
-						<a className="dropdown-item" href="#">Truck Type</a>
-						<a className="dropdown-item" href="#">Accessorial</a>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div className="row">
-			<div className="col-12 searchTop">
-				<img src="svg/icons/icon-map-near.svg" />
-				<input type="text" className="secOrange citySearch" placeholder="Enter City Name">
-			</div>
-		</div>
-		</div>
+    <div className="searchHeader">
         <div className="row">
         <div className="col-6">
           <h2 className="quickLoad">
@@ -85,26 +63,16 @@ const Home = props => (
       </div>
       </div>
   </div>
-	<div class="container searchCTAs">
-	<div class="row">
-		<div class="col-6 textRight">
-			<a href="#" class="btnLink">CLEAR</a>
-		</div>
-		<div class="col-6 textLeft">
-			<a href="#" class="btn orangeBG">Search</a>
-		</div>
-	</div>
-</div>
 	<div className="container">
 		<div className="card">
 			<div className="row">
 				<div className="col-6">
 					<span className="city">Miami</span><br />
 					<span className="port">Port of Miami</span><br />
-					<span className="pickupDate teal"><img src="../svg/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div className="col-6 textRight">
-          <span className="orderNum">Rw5t1j4 <img src="../svg/icons/icon-pin-orange.svg" /></span><br />
+          <span className="orderNum">Rw5t1j4 <img src="img/icons/icon-pin-orange.svg" /></span><br />
           <span className="price">$300.00</span>
 				</div>
 				<div className="col-12">
@@ -115,22 +83,22 @@ const Home = props => (
 				</div>
 				<div className="col-12 textRight">
 					<hr />
-					<span className="distance">350 miles to</span> 
+					<span className="distance">350 miles to</span>
 					<span className="destination">Sebatian</span><br />
-					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="../svg/icons/drop.svg" /></span>
+					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
-			</div>		
+			</div>
 		</div>
-		
+
 		<div className="card">
 			<div className="row">
 				<div className="col-6">
 					<span className="city">Miami</span><br />
 					<span className="port">Port of Miami</span><br />
-					<span className="pickupDate teal"><img src="../svg/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div className="col-6 textRight">
-          <span className="orderNum">Rw5t1j4 <img src="../svg/icons/icon-pin-orange.svg" width="20" /></span><br />
+          <span className="orderNum">Rw5t1j4 <img src="img/icons/icon-pin-orange.svg" width="20" /></span><br />
 <span className="price">$300.00</span>
 				</div>
 				<div className="col-12">
@@ -141,11 +109,11 @@ const Home = props => (
 				</div>
 				<div className="col-12 textRight">
 					<hr />
-					<span className="distance">350 miles to</span> 
+					<span className="distance">350 miles to</span>
 					<span className="destination">Sebatian</span><br />
-					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="../svg/icons/drop.svg" /></span>
+					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>
