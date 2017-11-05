@@ -4,10 +4,17 @@ import {
   FAILED_JOBS,
 } from '../../actions/doFetchJobsAsync';
 
+import {
+  SELECTED_JOB,
+  IS_FETCHING_SELECTED_JOB,
+  FAILED_SELECTED_JOB,
+} from '../../actions/doFetchSelectedJobAsync';
+
 const initialState = {
   isFetching: false,
   error: null,
   jobs: null,
+  selectedJob: null
 };
 
 export const jobs = (state = initialState, action) => {
@@ -30,6 +37,26 @@ export const jobs = (state = initialState, action) => {
         isFetching: false,
         error: null,
         jobs: action.jobs,
+        lastUpdated: action.receivedAt,
+      }
+    case IS_FETCHING_SELECTED_JOB:
+      return {
+        ...state,
+        isFetching: true,
+        error: null,
+      }
+    case FAILED_SELECTED_JOB:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.error,
+      }
+    case SELECTED_JOB:
+      return {
+        ...state,
+        isFetching: false,
+        error: null,
+        selectedJob: action.selectedJob,
         lastUpdated: action.receivedAt,
       }
     default:
