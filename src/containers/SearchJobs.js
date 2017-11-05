@@ -42,7 +42,7 @@ const Search = ({isFetchingJobs, jobs}) => (
             {jobs ? jobs.map(job =>
               <div
                 key={Math.random().toString(36).substring(2, 15)}
-                className="col-6"
+                className="col-md-6 col-lg-4 col-xl-3"
               >
                 <JobCard job={job} />
               </div>
