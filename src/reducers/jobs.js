@@ -1,30 +1,31 @@
-import { combineReducers } from 'redux';
 import {
   SELECT_JOB,
   REQUEST_JOBS,
   RECEIVE_JOBS
 } from '../actions/doFetchJobsAsync';
 
-const selectedJob = (state = 'reactjs', action) => {
+export const selectedJob = (state = null, action) => {
   switch (action.type) {
     case SELECT_JOB:
-      return action.jobs
+      return action.jobs;
     default:
-      return state
+      return state;
   }
 };
 
-const jobs = (state = {
+const initialState = {
   isFetching: false,
   didInvalidate: false,
-  items: []
-}, action) => {
+  items: null,
+};
+
+export const jobs = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_JOBS:
       return {
         ...state,
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
       }
     case RECEIVE_JOBS:
       return {
@@ -32,16 +33,11 @@ const jobs = (state = {
         isFetching: false,
         didInvalidate: false,
         items: action.jobs,
-        lastUpdated: action.receivedAt
+        lastUpdated: action.receivedAt,
       }
     default:
       return state
   }
 };
 
-const jobsReducers = combineReducers({
-  jobs,
-  selectedJob
-});
-
-export default jobsReducers;
+export default jobs;

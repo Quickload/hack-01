@@ -20,7 +20,7 @@ export const receiveJobs = (jobs, json) => ({
 });
 
 export const fetchJobsAsync = job => dispatch => {
-  dispatch(requestJobs(job))
+  dispatch(requestJobs(job));
   return fetch('https://us-central1-job-f4a75.cloudfunctions.net/jobs')
     .then(response => response.json())
     .then(json => dispatch(receiveJobs(job, json)))
