@@ -10,9 +10,9 @@ import JobDetailCard from '../components/JobDetailCard';
 import { getIsFetchingSelectedJobs, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
 
-// const JobDetailListWrapper = styled.div`
-//   margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
-// `;
+const JobDetailWrapper = styled.div`
+  margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
+`;
 
 const hoc = compose(
   connect((state) => ({
@@ -36,9 +36,9 @@ const JobDetail = ({isFetchingSelectedJob, selectedJob}) => (
     {isFetchingSelectedJob ?
       <Loader />
     :
-      <div>
+      <JobDetailWrapper>
         <JobDetailCard job={selectedJob} />
-      </div>
+      </JobDetailWrapper>
     }
   </App>
 );

@@ -25,7 +25,6 @@ export const selectedJob = (json) => {
   };
   
 export const fetchSelectedJobAsync = jobId => dispatch => {
-    console.log(jobId, 'jobId');
     dispatch(isFetchingSelectedJob());
     
     axios.get(`${apiUrl}/job?jobId=${jobId}`)

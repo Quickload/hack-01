@@ -3,9 +3,6 @@ import axios from 'axios';
 export const REQUEST_JOBS = 'REQUEST_JOBS';
 export const RECEIVE_JOBS = 'RECEIVE_JOBS';
 export const FAILED_JOBS = 'FAILED_JOBS';
-export const SELECTED_JOB = 'SELECTED_JOB';
-export const IS_FETCHING_SELECTED_JOB = 'IS_FETCHING_SELECTED_JOB';
-export const FAILED_SELECTED_JOB = 'FAILED_SELECTED_JOB';
 
 const apiUrl = `https://us-central1-quickload-f4a75.cloudfunctions.net`;
 
@@ -25,15 +22,6 @@ export const receivedJobs = (json) => {
     receivedAt: Date.now(),
   };
 };
-
-export const isFetchingSelectedJob = () => ({
-  type: IS_FETCHING_SELECTED_JOB,
-});
-
-export const failedToRetreiveSelectedJob = (error) => ({
-  type: FAILED_SELECTED_JOB,
-  error
-});
 
 export const fetchJobsAsync = () => dispatch => {
   dispatch(isFetchingJobs());
