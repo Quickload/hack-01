@@ -25,7 +25,7 @@ const hoc = compose(
 
 const Home = props => (
 <div>
-  <header className="">
+  <header className="header">
 	<div className="container">
 			<div className="row">
 				<div className="col-8 col-xs-8 float-left">
@@ -69,7 +69,7 @@ const Home = props => (
 				<div className="col-6">
 					<span className="city">Miami</span><br />
 					<span className="port">Port of Miami</span><br />
-					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div className="col-6 textRight">
           <span className="orderNum">Rw5t1j4 <img src="img/icons/icon-pin-orange.svg" /></span><br />
@@ -83,19 +83,19 @@ const Home = props => (
 				</div>
 				<div className="col-12 textRight">
 					<hr />
-					<span className="distance">350 miles to</span> 
+					<span className="distance">350 miles to</span>
 					<span className="destination">Sebatian</span><br />
 					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
-			</div>		
+			</div>
 		</div>
-		
+
 		<div className="card">
 			<div className="row">
 				<div className="col-6">
 					<span className="city">Miami</span><br />
 					<span className="port">Port of Miami</span><br />
-					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div className="col-6 textRight">
           <span className="orderNum">Rw5t1j4 <img src="img/icons/icon-pin-orange.svg" width="20" /></span><br />
@@ -109,11 +109,11 @@ const Home = props => (
 				</div>
 				<div className="col-12 textRight">
 					<hr />
-					<span className="distance">350 miles to</span> 
+					<span className="distance">350 miles to</span>
 					<span className="destination">Sebatian</span><br />
 					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
-			</div>		
+			</div>
 		</div>
 	</div>
 </div>

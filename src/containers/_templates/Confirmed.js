@@ -47,16 +47,16 @@ const Home = props => (
 
 <div className="container whiteBG">
 	<div className="details">
-			
+
 			<div className="row">
 				<div className="col-6">
 					<span className="city">Miami</span>
 					<span className="port">Port of Miami</span>
-					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>				
+					<span className="pickupDate teal"><img src="img/icons/pick.svg" /> Nov 29, Morning</span>
 				</div>
 				<div className="col-6 textRight detailsRight">
-					<span className="distance">350 miles to</span> 
-					<span className="destination">Sebatian</span>					
+					<span className="distance">350 miles to</span>
+					<span className="destination">Sebatian</span>
 					<span className="port">Port of Miami</span>
 					<span className="pickupDate accentOrange">Nov 29, Afternoon <img src="img/icons/drop.svg" /></span>
 				</div>
@@ -93,8 +93,8 @@ const Home = props => (
 				<div className="col-12 map">
 					<img src="img/map.png" width="100%">
 				</div>
-				
-			</div>		
+
+			</div>
 		</div>
 	</div>
 </div>
