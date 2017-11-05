@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="11px" height="12px" viewBox="0 0 11 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-close-sm</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+        <g id="02-search" transform="translate(-70.000000, -189.000000)" stroke="#CCCCCC" stroke-width="1.42857143">
+            <g id="search-row" transform="translate(0.000000, 66.000000)">
+                <g id="tag-search" transform="translate(12.000000, 112.000000)">
+                    <g id="icon-close-sm" transform="translate(58.656250, 12.000000)">
+                        <path d="M0.714285714,0.714285714 L9.28571429,9.28571429" id="line"></path>
+                        <path d="M0.714285714,0.714285714 L9.28571429,9.28571429" id="line" transform="translate(5.000000, 5.000000) scale(-1, 1) translate(-5.000000, -5.000000) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
