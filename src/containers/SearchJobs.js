@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, lifecycle } from 'recompose';
+import { compose, pure, withHandlers, lifecycle } from 'recompose';
+import { withRouter } from 'react-router'
 import styled from 'styled-components';
 
 import App from './App';
@@ -9,32 +10,41 @@ import Filter from './Filter';
 import JobCard from '../components/JobCard';
 import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
+import { clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
 const SearchListWrapper = styled.div`
-  margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
+  margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
 `;
 
 const hoc = compose(
+  withRouter,
   connect((state) => ({
     isFetchingJobs: getIsFetchingJobs(state),
     jobs: getJobs(state),
   }), (dispatch) => ({
     fetchJobs: () => dispatch(fetchJobsAsync()),
+    clearSelectedJob: () => dispatch(clearSelectedJobAction())
   })),
-  lifecycle({
-    componentDidMount() {
-      const {fetchJobs} = this.props;
-      fetchJobs();
-    },
+  withHandlers({
+    cardRedirect: ({ history }) => id => {
+      history.push(`/job/${id}`);
+    }
   }),
+lifecycle({
+  componentDidMount() {
+    const { fetchJobs, clearSelectedJob } = this.props;
+    fetchJobs();
+    clearSelectedJob();
+  },
+}),
   pure,
 );
 
-const Search = ({isFetchingJobs, jobs}) => (
+const Search = ({ isFetchingJobs, jobs, cardRedirect }) => (
   <App>
     {isFetchingJobs ?
       <Loader />
-    :
+      :
       <div>
         <Filter />
         <SearchListWrapper>
@@ -44,7 +54,9 @@ const Search = ({isFetchingJobs, jobs}) => (
                 key={Math.random().toString(36).substring(2, 15)}
                 className="col-md-6 col-lg-4 col-xl-3"
               >
-                <JobCard job={job} />
+                <JobCard
+                  cardRedirect={cardRedirect}
+                  job={job} />
               </div>
             ) :
               <p>No jobs yet...</p>

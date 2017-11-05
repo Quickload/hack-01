@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { pure } from 'recompose';
+import styled from 'styled-components';
 
 import pickUpIcon from '../images/icons/pick.svg';
 import dropOffIcon from '../images/icons/drop.svg';
 
-const JobCard = ({job}) => (
-  <div className="card">
+const JobCardLink = styled.div`
+  cursor: pointer;
+`;
+
+const JobCard = ({job, cardRedirect}) => (
+  <JobCardLink onClick={() => cardRedirect(job.jobId)} className="card">
     <div className="row">
       <div className="col-6">
         <div className="city">{job.PickCity}</div>
@@ -47,7 +52,7 @@ const JobCard = ({job}) => (
         </div>
       </div>
     </div>
-  </div>
+  </JobCardLink>
 );
 
 JobCard.propTypes = {
