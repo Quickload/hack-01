@@ -8,6 +8,8 @@ import Loader from '../components/shared/Loader';
 import JobDetailCard from '../components/JobDetailCard';
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
+import { fetchUserAsync } from '../actions/doFetchUserAsync';
+import { getIsFetchingUser, getUser } from '../reducers/user/selector';
 
 const JobDetailWrapper = styled.div`
   margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
@@ -16,6 +18,7 @@ const JobDetailWrapper = styled.div`
 const hoc = compose(
     connect((state) => ({
         isFetching: getIsFetchingSelectedJob(state),
+        user: getUser(state),
         selectedJob: getSelectedJob(state),
     }), (dispatch) => ({
         fetchSelectedJob: (id) => dispatch(fetchSelectedJobAsync(id)),
