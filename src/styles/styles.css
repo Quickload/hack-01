@@ -59,12 +59,14 @@ header{position:fixed; top:0px; left:0px; width:100%; height:70px; padding:15px;
 .quickLoad{font-size:18px; font-weight:bold;display: inline-block;    line-height: 30px;    padding-left: 15px;}
 .quickLoadSort{text-transform: none;font-weight: bold; background-color: transparent;border: none;color: #535353; font-size:20px; width:100%; display: inline-block; text-align: right}
 .locationSearch{font-size:18px; font-weight:normal;display: inline-block;    line-height: 30px;    padding-left: 15px;}
-.tagArea{padding:15px; border-bottom:1px dotted #CCCCCC;}
-.tag{display:inline-block; margin:0px 10px 10px 0px; font-size:16px; padding:3px 5px; border-radius:4px; box-shadow:1px 2px 8px #ccc; background-color:#fff;}
+.tagArea{padding:5px 15px; border-bottom:1px dotted #CCCCCC;}
+.tag{display:inline-block; margin: 10px 10px 10px 0px;  font-size: 16px; padding: 5px 10px; border-radius:4px; box-shadow:1px 2px 8px #ccc; background-color:#fff;}
 .removeTag{padding:0px 5px; display:inline-block}
 .search{    margin-left: -15px; border: none; padding: 0px 15px; width: 100%;}
 .dropdown-menu{width:100%}
-
+.checks{ padding:10px 20px 10px 0px}
+.checks input{margin-right:5px}
+.checks input:checked label{color:#F88900}
 
 
 /* details text styling */

@@ -60,30 +60,31 @@ const Home = props => (
 		</div>
 		<div className="row">
 			<div className="col-12 searchTop">
-				<div className="field">
-					<label className="form-check-label">
-					  <input type="checkbox" className="form-check-input">
+			<div className="float-left checks">
+					<label>
+					  <input type="checkbox">
 					  Flatbed
 					</label>
 				</div>
-				<div className="field">
-				<label className="form-check-label">
-				  <input type="checkbox" className="form-check-input">
+				<div className="float-left checks">
+				<label>
+				  <input type="checkbox">
 				  Dry Van
 				</label>
 				</div>
-				<div className="field">
-				<label className="form-check-label">
-				  <input type="checkbox" className="form-check-input">
+				<div className="float-left checks">
+				<label >
+				  <input type="checkbox">
 				  Reefer
 				</label>
 				</div>
-				<div className="field">
-				<label className="form-check-label">
-				  <input type="checkbox" className="form-check-input">
+				<div className="float-left checks">
+				<label>
+				  <input type="checkbox">
 				  Container
 				</label>
 				</div>
+				
 				
 			</div>
 		</div>
