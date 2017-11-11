@@ -9,6 +9,7 @@ import { reset, theme } from './theme';
 import SplashPage from './containers/SplashPage';
 import SearchJobs from './containers/SearchJobs';
 import JobDetail from './containers/JobDetail';
+import LeadCapture from './containers/LeadCapture';
 
 export const App = () => {
   injectGlobal`
@@ -37,6 +38,7 @@ export const App = () => {
         <Route exact path="/" component={SplashPage} />
         <Route exact path="/search" component={SearchJobs} />
         <Route exact path="/job/:id" component={JobDetail} />
+        <Route exact path="/job/:id/leadcapture" component={LeadCapture} />
       </div>
     </ThemeProvider>
   );
