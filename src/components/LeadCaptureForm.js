@@ -21,7 +21,7 @@ const FormLabel = styled.label`
 `
 
 const FormWrapper = styled.form`
-    padding-bottom: 25pxgi;
+    padding-bottom: 25px;
 `
 
 const JobDetailCard = ({ job }) => (

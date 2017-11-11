@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, lifecycle } from 'recompose';
+import { compose, pure, withHandlers, lifecycle } from 'recompose';
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import styled from 'styled-components';
 
 import homeIcon from '../images/icons/quickload-truck.svg';
@@ -39,19 +40,20 @@ const HeaderButton = styled.button`
 `
 
 const hoc = compose(
+  withRouter,
   connect((state) => ({
     selectedJob: getSelectedJob(state),
+    currentRoute: state.routing.location.pathname
   }), (dispatch) => ({})),
-  lifecycle({
-    componentDidMount() {
-      // const { id } = this.props.match.params;
-      console.log(this.props);
-    },
+  withHandlers({
+    headerRedirect: ({ history }) => () => {
+      history.push(`${history.location.pathname}/leadcapture`);
+    }
   }),
   pure,
 );
 
-export const Header = ({ selectedJob }) => (
+export const Header = ({ selectedJob, currentRoute, headerRedirect }) => (
   <HeaderWrapper>
     {selectedJob ?
       <div className="row">
@@ -61,10 +63,17 @@ export const Header = ({ selectedJob }) => (
           </HeaderLink>
         </div>
         <div className="col-8 textRight">
-          {console.log(this.props, this.state)}
-          <HeaderButton className="btn btn-default" to="/search">
-            HOOK ME UP!
-          </HeaderButton>
+          {currentRoute.includes("leadcapture") ?
+            <HeaderButton className="btn btn-default" to="/search">
+              SUBMIT
+            </HeaderButton> :
+            <HeaderButton
+              onClick={() => headerRedirect()}
+              className="btn btn-default"
+            >
+              HOOK ME UP!
+            </HeaderButton>
+          }
         </div>
       </div>
       :

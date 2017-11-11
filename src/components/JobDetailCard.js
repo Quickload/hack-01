@@ -37,7 +37,7 @@ const JobDetailCard = ({ job }) => (
                     </div>
                     <div className="col-6 textRight detailsRight">
                         <span className="city">{job.QuotePrice}</span>
-                        <span className="distance">{job.distance.text || '300 mi'} to <DropCitySpan>{job.DropCity}</DropCitySpan></span>
+                        <span className="distance">{job.distance ? job.distance.text : '300 mi'} to <DropCitySpan>{job.DropCity}</DropCitySpan></span>
                         <span className="pickupDate accentOrange">{job.DropDate}, {job.DropTime}<img src={dropOffIcon} /></span>
                     </div>
                 </div>
