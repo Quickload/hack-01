@@ -37,16 +37,16 @@ const JobDetailCard = ({ job }) => (
                     </div>
                     <div className="col-6 textRight detailsRight">
                         <span className="city">{job.QuotePrice}</span>
-                        <span className="distance">350 miles to <DropCitySpan>{job.DropCity}</DropCitySpan></span>
-                        <span className="pickupDate accentOrange">{job.DropCity}, {job.DropTime}<img src={dropOffIcon} /></span>
+                        <span className="distance">{job.duration.text} to <DropCitySpan>{job.DropCity}</DropCitySpan></span>
+                        <span className="pickupDate accentOrange">{job.DropDate}, {job.DropTime}<img src={dropOffIcon} /></span>
                     </div>
                 </div>
                 <div className="row">
                     <hr className="double" />
                     <div className="col-12">
-                        <span className="badge meta">Container</span>
-                        <span className="badge meta">40 ft</span>
-                        <span className="badge meta">Dry</span>
+                        { job.ShipType.tags.map((tag) => {
+                            return <span key={tag} className="badge meta">{tag}</span>
+                        })}
                     </div>
                     <hr className="double" />
                     <div className="col-12 pickDrop">
