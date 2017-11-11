@@ -30,10 +30,24 @@ const HeaderLink = styled(Link) `
   }
 `;
 
+const HeaderButton = styled.button`
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: ${({ theme }) => theme.colors.primary.base};
+  margin-right: 10px;
+`
+
 const hoc = compose(
   connect((state) => ({
     selectedJob: getSelectedJob(state),
   }), (dispatch) => ({})),
+  lifecycle({
+    componentDidMount() {
+      // const { id } = this.props.match.params;
+      console.log(this.props);
+    },
+  }),
   pure,
 );
 
@@ -47,9 +61,10 @@ export const Header = ({ selectedJob }) => (
           </HeaderLink>
         </div>
         <div className="col-8 textRight">
-          <HeaderLink to="/search">
+          {console.log(this.props, this.state)}
+          <HeaderButton className="btn btn-default" to="/search">
             HOOK ME UP!
-          </HeaderLink>
+          </HeaderButton>
         </div>
       </div>
       :
