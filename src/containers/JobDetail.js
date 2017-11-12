@@ -18,29 +18,39 @@ const JobDetailWrapper = styled.div`
 const hoc = compose(
     connect((state) => ({
         isFetching: getIsFetchingSelectedJob(state),
-        user: getUser(state),
         selectedJob: getSelectedJob(state),
+        user: getUser(state),
+        isFetchingUser: getIsFetchingUser(state),
     }), (dispatch) => ({
         fetchSelectedJob: (id) => dispatch(fetchSelectedJobAsync(id)),
+        fetchUser: () => dispatch(fetchUserAsync()),
     })),
     lifecycle({
         componentDidMount() {
-            const { fetchSelectedJob } = this.props;
+            const { fetchSelectedJob, user, fetchUser, isFetchingUser } = this.props;
             const { id } = this.props.match.params;
             fetchSelectedJob(id);
+
+            if (!isFetchingUser && !user) {
+                fetchUser();
+            }
         },
     }),
     pure,
 );
 
-const JobDetail = ({ isFetching, selectedJob }) => (
+const JobDetail = ({ isFetching, selectedJob, user, isFetchingUser }) => (
     <App>
-        {isFetching ?
+        {isFetching || isFetchingUser ?
             <Loader />
             :
             <JobDetailWrapper>
                 {selectedJob ?
-                    <JobDetailCard job={selectedJob} /> :
+                    <JobDetailCard
+                        job={selectedJob}
+                        user={user}
+                    />
+                    :
                     <h3>Sorry, job not available at the moment</h3>
                 }
             </JobDetailWrapper>
