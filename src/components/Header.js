@@ -9,7 +9,7 @@ import homeIcon from '../images/icons/quickload-truck.svg';
 import backIcon from '../images/icons/back.svg';
 
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
-import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
+import { fetchSelectedJobAsync, clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -44,16 +44,21 @@ const hoc = compose(
   connect((state) => ({
     selectedJob: getSelectedJob(state),
     currentRoute: state.routing.location.pathname
-  }), (dispatch) => ({})),
+  }), (dispatch) => ({
+    clearSelectedJob: () => dispatch(clearSelectedJobAction())
+  })),
   withHandlers({
     headerRedirect: ({ history }) => () => {
       history.push(`${history.location.pathname}/leadcapture`);
-    }
+    },
+    submitRedirect: ({ history }) => () => {
+      history.push(`/congrats`);
+    },
   }),
   pure,
 );
 
-export const Header = ({ selectedJob, currentRoute, headerRedirect }) => (
+export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedirect, clearSelectedJob }) => (
   <HeaderWrapper>
     {selectedJob ?
       <div className="row">
@@ -64,12 +69,18 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect }) => (
         </div>
         <div className="col-8 textRight">
           {currentRoute.includes("leadcapture") ?
-            <HeaderButton className="btn btn-default" to="/search">
+            <HeaderButton
+              className="btn btn-default"
+              onClick={() => {
+                clearSelectedJob()
+                submitRedirect()
+              }}
+            >
               SUBMIT
             </HeaderButton> :
             <HeaderButton
-              onClick={() => headerRedirect()}
               className="btn btn-default"
+              onClick={() => headerRedirect()}
             >
               HOOK ME UP!
             </HeaderButton>
@@ -86,10 +97,10 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect }) => (
         <div className="col-8 textRight">
           <HeaderLink to="/my-jobs">
             My Jobs
-            </HeaderLink>
+          </HeaderLink>
           <HeaderLink to="/search">
             Search
-            </HeaderLink>
+          </HeaderLink>
         </div>
       </div>
     }
