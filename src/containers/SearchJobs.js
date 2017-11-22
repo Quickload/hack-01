@@ -64,12 +64,12 @@ const Search = ({ isFetchingJobs, jobs, cardRedirect, handleInput, text }) => (
         <SearchListWrapper>
           <div className="row">
             {jobs ? jobs.filter(j =>
-              j.PickCity.indexOf(text) !== -1 ||
-              j.PickStation.indexOf(text) !== -1 ||
-              j.LoadType.toString().indexOf(text) !== -1 ||
-              j.ContainerSize.toString().indexOf(text) !== -1 ||
-              j.ContainerType.toString().indexOf(text) !== -1 ||
-              j.DropCity.indexOf(text) !== -1
+              j.PickCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.PickStation.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.LoadType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.ContainerSize.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.ContainerType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.DropCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1
             ).map(job =>
               <div
                 key={Math.random().toString(36).substring(2, 15)}
