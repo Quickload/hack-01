@@ -18,7 +18,7 @@ import {
 
 const hoc = compose(
   withState('filterBy', 'setFilterBy', FILTER_BY_PICKUP_CITY),
-  withState('tags', 'setTags', ['Near Me']),
+  withState('tags', 'setTags', ['Near Me', 'Something']),
   withState('pickupCityValue', 'setPickupCityValue', 'Near Me'),
   withHandlers({
     handleChangeFilterBy: ({setFilterBy}) => selectedFilterBy => {

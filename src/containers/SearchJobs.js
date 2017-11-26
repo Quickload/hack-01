@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  compose,
-  pure,
-  withState,
-  lifecycle,
-} from 'recompose';
+import { compose, pure, withHandlers, withState, lifecycle } from 'recompose';
+import { withRouter } from 'react-router'
 import styled from 'styled-components';
 
 import App from './App';
@@ -14,6 +10,7 @@ import Filter from './Filter';
 import JobCard from '../components/JobCard';
 import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
+import { clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
 const SearchListWrapper = styled.div`
   margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
@@ -28,32 +25,41 @@ const ErrorMessage = styled.div`
   width: 100%;
   margin: 40px 0;
   text-align: center;
+  margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
 `;
 
 const hoc = compose(
+  withRouter,
   connect((state) => ({
     isFetchingJobs: getIsFetchingJobs(state),
     jobs: getJobs(state),
   }), (dispatch) => ({
     fetchJobs: () => dispatch(fetchJobsAsync()),
+    clearSelectedJob: () => dispatch(clearSelectedJobAction())
   })),
   withState('filterIsOpen', 'setFilterIsOpen', false),
+  withHandlers({
+    cardRedirect: ({ history }) => id => {
+      history.push(`/job/${id}`);
+    }
+  }),
   lifecycle({
     componentDidMount() {
-      const {fetchJobs} = this.props;
+      const { fetchJobs, clearSelectedJob } = this.props;
       fetchJobs();
+      clearSelectedJob();
     },
   }),
   pure,
 );
 
-const Search = ({isFetchingJobs, jobs, filterIsOpen, setFilterIsOpen}) => (
+const Search = ({isFetchingJobs, jobs, filterIsOpen, setFilterIsOpen, cardRedirect}) => (
   <App>
     <Filter filterIsOpen={filterIsOpen} setFilterIsOpen={setFilterIsOpen} />
 
     {isFetchingJobs ?
       <Loader />
-    :
+      :
       <div>
         <SearchListWrapper filterIsOpen={filterIsOpen}>
           <div className="row">
@@ -62,7 +68,9 @@ const Search = ({isFetchingJobs, jobs, filterIsOpen, setFilterIsOpen}) => (
                 key={Math.random().toString(36).substring(2, 15)}
                 className="col-md-6 col-lg-4 col-xl-3"
               >
-                <JobCard job={job} />
+                <JobCard
+                  cardRedirect={cardRedirect}
+                  job={job} />
               </div>
             ) :
               <ErrorMessage>
