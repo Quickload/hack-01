@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, withHandlers, lifecycle } from 'recompose';
+import { compose, pure, withHandlers } from 'recompose';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import styled from 'styled-components';
@@ -8,8 +8,14 @@ import styled from 'styled-components';
 import homeIcon from '../images/icons/quickload-truck.svg';
 import backIcon from '../images/icons/back.svg';
 
-import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
-import { fetchSelectedJobAsync, clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
+import {
+  // getIsFetchingSelectedJob,
+  getSelectedJob,
+} from '../reducers/jobs/selector';
+import {
+  // fetchSelectedJobAsync,
+  clearSelectedJobAction,
+} from '../actions/doFetchSelectedJobAsync';
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -89,7 +95,7 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedire
       </div>
       :
       <div className="row">
-        <div className="col-4">
+        <div className="col-6">
           <HeaderLink to="/">
             <img src={homeIcon} alt="Home" />
             <h2 className="quickLoad">
@@ -97,14 +103,14 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedire
             </h2>
           </HeaderLink>
         </div>
-        {/* <div className="col-8 textRight">
+        <div className="col-6 textRight">
           <HeaderLink to="/my-jobs">
             My Jobs
           </HeaderLink>
           <HeaderLink to="/search">
             Search
           </HeaderLink>
-        </div> */}
+        </div>
       </div>
     }
   </HeaderWrapper>

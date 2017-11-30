@@ -9,9 +9,11 @@ import {
 import mapIcon from '../../images/icons/icon-map-near.svg';
 
 const hoc = compose(
+  withState('pickupCityValue', 'setPickupCityValue', ''),
   withHandlers({
-    handleOnChange: ({handlePickupCityTag}) => e => {
+    handleOnChange: ({setPickupCityValue}) => e => {
       console.log(e);
+      setPickupCityValue()
     },
   }),
   pure,

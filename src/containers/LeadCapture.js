@@ -8,8 +8,11 @@ import Loader from '../components/shared/Loader';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
-import { fetchUserAsync } from '../actions/doFetchUserAsync';
-import { getIsFetchingUser, getUser } from '../reducers/user/selector';
+// import { fetchUserAsync } from '../actions/doFetchUserAsync';
+import {
+    // getIsFetchingUser,
+    getUser,
+} from '../reducers/user/selector';
 
 const LeadCaptureWrapper = styled.div`
 margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;

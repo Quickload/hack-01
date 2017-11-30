@@ -74,7 +74,6 @@ const Search = ({
       <Loader />
       :
       <div>
-        {/* <Filter /> */}
         <input
           type="text"
           className="form-control"
