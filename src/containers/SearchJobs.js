@@ -30,7 +30,8 @@ const ErrorMessage = styled.div`
 
 const hoc = compose(
   withRouter,
-  withState('text', 'updateText', ''),
+  withState('searchValue', 'setSearchValue', ''),
+  withState('tags', 'setTags', ['Near Me']),
   connect((state) => ({
     isFetchingJobs: getIsFetchingJobs(state),
     jobs: getJobs(state),
@@ -40,9 +41,9 @@ const hoc = compose(
   })),
   withState('filterIsOpen', 'setFilterIsOpen', false),
   withHandlers({
-    handleInput: props => e => {
-      props.updateText(e.target.value);
-      console.log('myText: ', e.target.value);
+    handleSearchInput: ({setSearchValue}) => (e, value) => {
+      const newValue = (e && e.target && e.target.value) || value || '';
+      setSearchValue(newValue);
     },
     cardRedirect: ({ history }) => id => {
       history.push(`/job/${id}`);
@@ -58,61 +59,69 @@ const hoc = compose(
   pure,
 );
 
-const Search = ({
-  isFetchingJobs,
-  jobs,
-  filterIsOpen,
-  setFilterIsOpen,
-  cardRedirect,
-  handleInput,
-  text,
-}) => (
-  <App>
-    <Filter filterIsOpen={filterIsOpen} setFilterIsOpen={setFilterIsOpen} />
+const lowcaseString = str => str.toString().toLowerCase();
 
-    {isFetchingJobs ?
-      <Loader />
-      :
-      <div>
-        <input
-          type="text"
-          className="form-control"
-          id="search"
-          aria-describedby="search"
-          placeholder="Search..."
-          value = {text}
-          onChange={handleInput}
-        />
-        <SearchListWrapper filterIsOpen={filterIsOpen}>
-          <div className="row">
-            {jobs ? jobs.filter(j =>
-              j.PickCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-              j.PickStation.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-              j.LoadType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-              j.ContainerSize.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-              j.ContainerType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
-              j.DropCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1
-            ).map(job =>
-              <div
-                key={Math.random().toString(36).substring(2, 15)}
-                className="col-md-6 col-lg-4 col-xl-3"
-              >
-                <JobCard
-                  cardRedirect={cardRedirect}
-                  job={job} />
-              </div>
-            ) :
-              <ErrorMessage>
-                <p><strong>No jobs available right now.</strong></p>
-                <br />
-                <p>Please check back soon.</p>
-              </ErrorMessage>
-            }
-          </div>
-        </SearchListWrapper>
-      </div>
+const hasInArray = (e, tag) => {
+  if (
+    lowcaseString(e.PickCity).indexOf(lowcaseString(tag)) !== -1 ||
+    lowcaseString(e.PickStation).indexOf(lowcaseString(tag)) !== -1 ||
+    lowcaseString(e.LoadType).indexOf(lowcaseString(tag)) !== -1 ||
+    lowcaseString(e.ContainerSize).indexOf(lowcaseString(tag)) !== -1 ||
+    lowcaseString(e.ContainerType).indexOf(lowcaseString(tag)) !== -1 ||
+    lowcaseString(e.DropCity).indexOf(lowcaseString(tag)) !== -1
+  ) return e;
+  return false;
+};
+
+const Search = props => {
+  const {
+    isFetchingJobs,
+    jobs,
+    filterIsOpen,
+    cardRedirect,
+    tags,
+  } = props;
+
+  const searchableTags = tags && tags.reduce((c, tag) => {
+    if (tag !== 'Near Me') {
+      c.push(lowcaseString(tag));
     }
-  </App>
-);
+    return c;
+  }, []);
+
+  return (
+    <App>
+      {isFetchingJobs ?
+        <Loader />
+      :
+        <div>
+          <Filter {...props} />
+          <SearchListWrapper filterIsOpen={filterIsOpen}>
+            <div className="row">
+              {jobs ? jobs.filter(j =>
+                searchableTags && searchableTags.length ? searchableTags.find(t => hasInArray(j, t)) : j
+              ).map(job =>
+                <div
+                  key={Math.random().toString(36).substring(2, 15)}
+                  className="col-md-6 col-lg-4 col-xl-3"
+                >
+                  <JobCard
+                    cardRedirect={cardRedirect}
+                    job={job} />
+                </div>
+              ) :
+                <ErrorMessage>
+                  <p><strong>No jobs available right now.</strong></p>
+                  <br />
+                  <p>Please check back soon.</p>
+                </ErrorMessage>
+            }
+            </div>
+          </SearchListWrapper>
+        </div>
+      }
+    </App>
+  );
+};
 
 export default hoc(Search)
