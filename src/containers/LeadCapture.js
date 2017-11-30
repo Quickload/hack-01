@@ -5,57 +5,46 @@ import styled from 'styled-components';
 
 import App from './App';
 import Loader from '../components/shared/Loader';
-import JobDetailCard from '../components/JobDetailCard';
+import LeadCaptureForm from '../components/LeadCaptureForm';
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
 import { fetchUserAsync } from '../actions/doFetchUserAsync';
 import { getIsFetchingUser, getUser } from '../reducers/user/selector';
 
-const JobDetailWrapper = styled.div`
-  margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
+const LeadCaptureWrapper = styled.div`
+margin: ${({ theme }) => theme.spacing.xsmall}px ${({ theme }) => theme.spacing.small}px;
 `;
 
 const hoc = compose(
     connect((state) => ({
         isFetching: getIsFetchingSelectedJob(state),
-        selectedJob: getSelectedJob(state),
         user: getUser(state),
-        isFetchingUser: getIsFetchingUser(state),
+        selectedJob: getSelectedJob(state),
     }), (dispatch) => ({
         fetchSelectedJob: (id) => dispatch(fetchSelectedJobAsync(id)),
-        fetchUser: () => dispatch(fetchUserAsync()),
     })),
     lifecycle({
         componentDidMount() {
-            const { fetchSelectedJob, user, fetchUser, isFetchingUser } = this.props;
+            const { fetchSelectedJob } = this.props;
             const { id } = this.props.match.params;
             fetchSelectedJob(id);
-
-            if (!isFetchingUser && !user) {
-                fetchUser();
-            }
         },
     }),
     pure,
 );
 
-const JobDetail = ({ isFetching, selectedJob, user, isFetchingUser }) => (
+const LeadCapture = ({ isFetching, selectedJob }) => (
     <App>
-        {isFetching || isFetchingUser ?
+        {isFetching ?
             <Loader />
             :
-            <JobDetailWrapper>
+            <LeadCaptureWrapper>
                 {selectedJob ?
-                    <JobDetailCard
-                        job={selectedJob}
-                        user={user}
-                    />
-                    :
+                    <LeadCaptureForm job={selectedJob} /> :
                     <h3>Sorry, job not available at the moment</h3>
                 }
-            </JobDetailWrapper>
-        }
+            </LeadCaptureWrapper>}
     </App>
 );
 
-export default hoc(JobDetail)
+export default hoc(LeadCapture)

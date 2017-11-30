@@ -30,6 +30,7 @@ const ErrorMessage = styled.div`
 
 const hoc = compose(
   withRouter,
+  withState('text', 'updateText', ''),
   connect((state) => ({
     isFetchingJobs: getIsFetchingJobs(state),
     jobs: getJobs(state),
@@ -39,6 +40,10 @@ const hoc = compose(
   })),
   withState('filterIsOpen', 'setFilterIsOpen', false),
   withHandlers({
+    handleInput: props => e => {
+      props.updateText(e.target.value);
+      console.log('myText: ', e.target.value);
+    },
     cardRedirect: ({ history }) => id => {
       history.push(`/job/${id}`);
     }
@@ -53,7 +58,15 @@ const hoc = compose(
   pure,
 );
 
-const Search = ({isFetchingJobs, jobs, filterIsOpen, setFilterIsOpen, cardRedirect}) => (
+const Search = ({
+  isFetchingJobs,
+  jobs,
+  filterIsOpen,
+  setFilterIsOpen,
+  cardRedirect,
+  handleInput,
+  text,
+}) => (
   <App>
     <Filter filterIsOpen={filterIsOpen} setFilterIsOpen={setFilterIsOpen} />
 
@@ -61,9 +74,26 @@ const Search = ({isFetchingJobs, jobs, filterIsOpen, setFilterIsOpen, cardRedire
       <Loader />
       :
       <div>
+        {/* <Filter /> */}
+        <input
+          type="text"
+          className="form-control"
+          id="search"
+          aria-describedby="search"
+          placeholder="Search..."
+          value = {text}
+          onChange={handleInput}
+        />
         <SearchListWrapper filterIsOpen={filterIsOpen}>
           <div className="row">
-            {jobs ? jobs.map(job =>
+            {jobs ? jobs.filter(j =>
+              j.PickCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.PickStation.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.LoadType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.ContainerSize.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.ContainerType.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1 ||
+              j.DropCity.toString().toLowerCase().indexOf(text.toLowerCase()) !== -1
+            ).map(job =>
               <div
                 key={Math.random().toString(36).substring(2, 15)}
                 className="col-md-6 col-lg-4 col-xl-3"

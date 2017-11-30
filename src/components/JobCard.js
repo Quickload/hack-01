@@ -34,11 +34,11 @@ const JobCard = ({job, cardRedirect}) => (
       </div>
       <div className="col-12">
         <hr />
-        <span className="badge meta darkBG">Container</span>
+        <span className="badge meta darkBG">{job.LoadType}</span>
         &nbsp;
-        <span className="badge meta">40 ft</span>
+        <span className="badge meta">{job.ContainerSize ? job.ContainerSize +' ft' : ''}</span>
         &nbsp;
-        <span className="badge meta">Dry</span>
+        <span className="badge meta">{job.ContainerType}</span>
       </div>
       <div className="col-12 textRight">
         <hr />
