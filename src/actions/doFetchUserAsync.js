@@ -27,7 +27,7 @@ export const fetchUserAsync = (userId = 'zW1dz12t8DbmaC0dhr5D') => dispatch => {
     params: {userId}
   })
     .then(function (response) {
-      setTimeout(dispatch(receivedUser(response.data)), 2000);
+      dispatch(receivedUser(response.data));
     })
     .catch(function (error) {
       console.log(error);
