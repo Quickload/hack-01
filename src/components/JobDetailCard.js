@@ -6,19 +6,13 @@ import styled from 'styled-components';
 
 import pickUpIcon from '../images/icons/pick.svg';
 import dropOffIcon from '../images/icons/drop.svg';
+import JobDetailMap from './JobDetailMap';
 
 const DropCitySpan = styled.span`
     font-weight: bold;
 `;
 
-// const distanceBetweenGeopoints = (lat1, lon1, lat2, lon2) => {
-//     console(lat1, lon1, lat2, lon2);
-//     var g = new GeoPoint(lat1, lon1);
-
-//     console.log(g, 'geopoint');
-// }
-
-const JobDetailCard = ({ job }) => (
+const JobDetailCard = ({ job, markerLocation, setMarkerLocation }) => (
     <div>
         {/* <div className="container status">
             <div className="row">
@@ -45,33 +39,39 @@ const JobDetailCard = ({ job }) => (
                         </span>
                     </div>
                 </div>
+                <hr className="double" />
+                <div className="col-12">
+                    { job.ShipType.tags.map((tag) => {
+                        return <span key={tag} className="badge meta">{tag}</span>
+                    })}
+                </div>
+                <hr className="double" />
                 <div className="row">
-                    <hr className="double" />
-                    <div className="col-12">
-                        { job.ShipType.tags.map((tag) => {
-                            return <span key={tag} className="badge meta">{tag}</span>
-                        })}
-                    </div>
-                    <hr className="double" />
-                    <div className="col-12 pickDrop">
+                    <div className="col-6">
                         <img src={pickUpIcon} alt="pickup" className="float-left pickIcon" />
                         <div className="float-left">
                             <label className="addressLabel">Pick Up</label>
                             <span className="address">{job.PickCity}, {job.PickState} {job.PickZip}</span>
                         </div>
                     </div>
-                    <hr className="double" />
-                    <div className="col-12 pickDrop">
+                    <div className="col-6">
                         <img src={dropOffIcon} alt="dropoff" className="float-left pickIcon" />
                         <div className="float-left">
                             <label className="addressLabel">Drop-off</label>
                             <span className="address">{job.DropCity}, {job.DropState} {job.DropZip}</span>
                         </div>
                     </div>
-                    <div className="col-12 map">
-                        <img src="images/map.png" width="100%" alt="map" />
-                    </div>
                 </div>
+                {job && job.location &&
+                    <div>
+                        <hr className="double" />
+                        <br />
+                        <p className="city">Pick Up Location</p>
+                        <br />
+                        <JobDetailMap location={job.location} />
+                        <hr className="double" />
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -85,4 +85,4 @@ JobDetailCard.defaultProps = {
     job: null,
 };
 
-export default pure(JobDetailCard)
+export default pure(JobDetailCard);
