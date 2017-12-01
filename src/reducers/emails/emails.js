@@ -35,11 +35,7 @@ export const emails = (state = initialState, action) => {
                 error: action.error,
             }
         case EMAIL_SENT:
-            return {
-                ...state,
-                isSendingEmail: false,
-                error: null,
-            }
+            return initialState;
         default:
             return state
     }
