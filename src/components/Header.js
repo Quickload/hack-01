@@ -98,9 +98,9 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedire
         <div className="col-6">
           <HeaderLink to="/">
             <img src={homeIcon} alt="Home" />
-            <h2 className="quickLoad">
+            {/* <h2 className="quickLoad">
               <span className="secOrange">Quick</span>Load Board
-            </h2>
+            </h2> */}
           </HeaderLink>
         </div>
         <div className="col-6 textRight">
