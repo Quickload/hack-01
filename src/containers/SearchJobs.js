@@ -12,6 +12,12 @@ import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
 import { clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
+import {
+  SORT_BY_DISTANCE,
+  SORT_BY_PRICE,
+  SORT_BY_DATE,
+} from '../constants/sort';
+
 const SearchListWrapper = styled.div`
   margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
   ${({filterIsOpen}) => filterIsOpen && `
@@ -48,6 +54,12 @@ const hoc = compose(
     cardRedirect: ({ history }) => id => {
       history.push(`/job/${id}`);
     }
+  }),
+  withState('sortBy', 'setSortBy', SORT_BY_DISTANCE),
+  withHandlers({
+    handleChangeSortBy: ({setSortBy}) => selectedSortBy => {
+      setSortBy(selectedSortBy)
+    },
   }),
   lifecycle({
     componentDidMount() {
@@ -100,7 +112,14 @@ const Search = props => {
             <div className="row">
               {jobs ? jobs.filter(j =>
                 searchableTags && searchableTags.length ? searchableTags.find(t => hasInArray(j, t)) : j
-              ).map(job =>
+              ).sort( (a, b) => {
+                // yourNumber = Number('$1,234.56'.replace(/(^\$|,)/g,''));
+                const nameA = Number(a.JobPrice.replace(/(^\$|,)/g,''));
+                const nameB = Number(b.JobPrice.replace(/(^\$|,)/g,''));
+                if (nameA < nameB) return -1;
+                if (nameA > nameB) return 1;
+                return 0; 
+              } ).map(job =>
                 <div
                   key={Math.random().toString(36).substring(2, 15)}
                   className="col-md-6 col-lg-4 col-xl-3"
