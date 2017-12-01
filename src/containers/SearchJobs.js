@@ -92,6 +92,7 @@ const Search = props => {
     filterIsOpen,
     cardRedirect,
     tags,
+    sortBy,
   } = props;
 
   const searchableTags = tags && tags.reduce((c, tag) => {
@@ -113,13 +114,23 @@ const Search = props => {
               {jobs ? jobs.filter(j =>
                 searchableTags && searchableTags.length ? searchableTags.find(t => hasInArray(j, t)) : j
               ).sort( (a, b) => {
-                // yourNumber = Number('$1,234.56'.replace(/(^\$|,)/g,''));
-                const nameA = Number(a.JobPrice.replace(/(^\$|,)/g,''));
-                const nameB = Number(b.JobPrice.replace(/(^\$|,)/g,''));
-                if (nameA < nameB) return -1;
-                if (nameA > nameB) return 1;
-                return 0; 
-              } ).map(job =>
+                if (sortBy === SORT_BY_DISTANCE) {
+                  // const distanceA = a.distance && a.distance.text || '300 miles';
+                  // const distanceB = b.distance && b.distance.text || '300 miles';
+                  // return distanceA-distanceB;
+                  return 0;
+                } else if (sortBy === SORT_BY_PRICE) {
+                  const priceA = Number(a.QuotePrice.replace(/(^\$|,)/g,''));
+                  const priceB = Number(b.QuotePrice.replace(/(^\$|,)/g,''));
+                  return priceA-priceB;
+                } else if (sortBy === SORT_BY_DATE) {
+                  const dateA = new Date(a.PickDate);
+                  const dateB = new Date(b.PickDate);
+                  return dateA-dateB;
+                } else {
+                  return 0;
+                }}
+              ).map(job =>
                 <div
                   key={Math.random().toString(36).substring(2, 15)}
                   className="col-md-6 col-lg-4 col-xl-3"
