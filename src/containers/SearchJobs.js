@@ -12,6 +12,12 @@ import { getIsFetchingJobs, getJobs } from '../reducers/jobs/selector';
 import { fetchJobsAsync } from '../actions/doFetchJobsAsync';
 import { clearSelectedJobAction } from '../actions/doFetchSelectedJobAsync';
 
+import {
+  SORT_BY_DISTANCE,
+  SORT_BY_PRICE,
+  SORT_BY_DATE,
+} from '../constants/sort';
+
 const SearchListWrapper = styled.div`
   margin: ${({theme}) => theme.spacing.xsmall}px ${({theme}) => theme.spacing.small}px;
   ${({filterIsOpen}) => filterIsOpen && `
@@ -49,6 +55,12 @@ const hoc = compose(
       history.push(`/job/${id}`);
     }
   }),
+  withState('sortBy', 'setSortBy', SORT_BY_DISTANCE),
+  withHandlers({
+    handleChangeSortBy: ({setSortBy}) => selectedSortBy => {
+      setSortBy(selectedSortBy)
+    },
+  }),
   lifecycle({
     componentDidMount() {
       const { fetchJobs, clearSelectedJob } = this.props;
@@ -80,6 +92,7 @@ const Search = props => {
     filterIsOpen,
     cardRedirect,
     tags,
+    sortBy,
   } = props;
 
   const searchableTags = tags && tags.reduce((c, tag) => {
@@ -100,6 +113,23 @@ const Search = props => {
             <div className="row">
               {jobs ? jobs.filter(j =>
                 searchableTags && searchableTags.length ? searchableTags.find(t => hasInArray(j, t)) : j
+              ).sort( (a, b) => {
+                if (sortBy === SORT_BY_DISTANCE) {
+                  // const distanceA = a.distance && a.distance.text || '300 miles';
+                  // const distanceB = b.distance && b.distance.text || '300 miles';
+                  // return distanceA-distanceB;
+                  return 0;
+                } else if (sortBy === SORT_BY_PRICE) {
+                  const priceA = Number(a.QuotePrice.replace(/(^\$|,)/g,''));
+                  const priceB = Number(b.QuotePrice.replace(/(^\$|,)/g,''));
+                  return priceA-priceB;
+                } else if (sortBy === SORT_BY_DATE) {
+                  const dateA = new Date(a.PickDate);
+                  const dateB = new Date(b.PickDate);
+                  return dateA-dateB;
+                } else {
+                  return 0;
+                }}
               ).map(job =>
                 <div
                   key={Math.random().toString(36).substring(2, 15)}
