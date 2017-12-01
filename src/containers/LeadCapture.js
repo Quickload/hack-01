@@ -8,6 +8,13 @@ import Loader from '../components/shared/Loader';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
+import {
+    getIsSendingEmail,
+    getNameFormData,
+    getPhoneFormData,
+    getEmailFormData,
+} from '../reducers/emails/selector';
+import { updateFormData } from '../actions/sendEmailsAsync';
 // import { fetchUserAsync } from '../actions/doFetchUserAsync';
 import {
     // getIsFetchingUser,
@@ -23,12 +30,19 @@ const hoc = compose(
         isFetching: getIsFetchingSelectedJob(state),
         user: getUser(state),
         selectedJob: getSelectedJob(state),
+        isSendingEmail: getIsSendingEmail(state),
+        name: getNameFormData(state),
+        phone: getPhoneFormData(state),
+        email: getEmailFormData(state),
     }), (dispatch) => ({
         fetchSelectedJob: (id) => dispatch(fetchSelectedJobAsync(id)),
+        handleFormInputChange: (name, phone, email) => dispatch(updateFormData(name, phone, email)),
     })),
     lifecycle({
         componentDidMount() {
             const { fetchSelectedJob } = this.props;
+
+            console.log(this.props, 'props');
             const { id } = this.props.match.params;
             fetchSelectedJob(id);
         },
@@ -36,14 +50,20 @@ const hoc = compose(
     pure,
 );
 
-const LeadCapture = ({ isFetching, selectedJob }) => (
+const LeadCapture = ({ isFetching, selectedJob, isSendingEmail, handleFormInputChange, name, email, phone }) => (
     <App>
-        {isFetching ?
+        {isFetching || isSendingEmail ?
             <Loader />
             :
             <LeadCaptureWrapper>
                 {selectedJob ?
-                    <LeadCaptureForm job={selectedJob} /> :
+                    <LeadCaptureForm 
+                        job={selectedJob} 
+                        handleChange={handleFormInputChange}
+                        name={name}
+                        phone={phone}
+                        email={email}
+                        /> :
                     <h3>Sorry, job not available at the moment</h3>
                 }
             </LeadCaptureWrapper>}

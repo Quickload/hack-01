@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, withHandlers } from 'recompose';
+import { compose, pure, withHandlers, lifecycle } from 'recompose';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import styled from 'styled-components';
@@ -16,6 +16,10 @@ import {
   // fetchSelectedJobAsync,
   clearSelectedJobAction,
 } from '../actions/doFetchSelectedJobAsync';
+import { getEmailFormData } from '../reducers/emails/selector';
+import { sendEmailAsync } from '../actions/sendEmailsAsync';
+import { fetchUserAsync } from '../actions/doFetchUserAsync';
+import { getIsFetchingUser, getUser } from '../reducers/user/selector';
 
 const HeaderWrapper = styled.header`
   position: fixed;
@@ -49,9 +53,14 @@ const hoc = compose(
   withRouter,
   connect((state) => ({
     selectedJob: getSelectedJob(state),
-    currentRoute: state.routing.location.pathname
+    currentRoute: state.routing.location.pathname,
+    email: getEmailFormData(state),
+    user: getUser(state),
+    isFetchingUser: getIsFetchingUser(state),
   }), (dispatch) => ({
-    clearSelectedJob: () => dispatch(clearSelectedJobAction())
+    clearSelectedJob: () => dispatch(clearSelectedJobAction()),
+    submitFeedback: (user, job, email) => dispatch(sendEmailAsync(user, job, email)),
+    fetchUser: () => dispatch(fetchUserAsync()),
   })),
   withHandlers({
     headerRedirect: ({ history }) => () => {
@@ -61,10 +70,19 @@ const hoc = compose(
       history.push(`/congrats`);
     },
   }),
+  lifecycle({
+    componentDidMount() {
+      const { user, fetchUser, isFetchingUser } = this.props;
+
+      if (!isFetchingUser && !user) {
+        fetchUser();
+      }
+    },
+  }),
   pure,
 );
 
-export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedirect, clearSelectedJob }) => (
+export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedirect, clearSelectedJob, submitFeedback, email, user, isFetchingUser }) => (
   <HeaderWrapper>
     {selectedJob ?
       <div className="row">
@@ -78,8 +96,13 @@ export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedire
             <HeaderButton
               className="btn btn-default"
               onClick={() => {
-                clearSelectedJob()
-                submitRedirect()
+                if (email || email.length > 0) {
+                  submitFeedback(user, selectedJob, email)
+                  clearSelectedJob()
+                  submitRedirect()
+                } else {
+                  alert('Please enter an email.');
+                }
               }}
             >
               SUBMIT

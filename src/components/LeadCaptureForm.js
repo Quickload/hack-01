@@ -23,37 +23,57 @@ const FormWrapper = styled.form`
     padding-bottom: 25px;
 `
 
-const JobDetailCard = ({ job }) => (
-    <div className="container whiteBG">
-        <div className="details">
-            <div className="row">
-                <div className="col-12">
-                    <ContactSpan>How do we contact you?</ContactSpan>
-                </div>
-                <div className="col-6">
-                    <span className="city">{job.PickCity} - {job.DropCity}</span>
-                </div>
-                <div className="col-6 textRight">
-                    <span className="city">{job.QuotePrice}</span>
-                </div>
-                <OrangeHr />
-            </div>
-            <FormWrapper>
-                <div className="form-group">
-                    <FormLabel for="name">FULL NAME</FormLabel>
-                    <input type="text" className="form-control" id="name" aria-describedby="name" placeholder="John Smith" />
-                </div>
-                <div className="form-group">
-                    <FormLabel for="phone">MOBILE NUBMER</FormLabel>
-                    <input type="text" className="form-control" id="phone" aria-describedby="phone" placeholder="(305) 555-1212" />
-                </div>
-                <div className="form-group">
-                    <FormLabel for="email">E-MAIL</FormLabel>
-                    <input type="email" className="form-control" id="email" aria-describedby="email" placeholder="jsmith@mail.com" />
-                </div>
-            </FormWrapper>
-        </div>
-    </div>
-)
+const LeadCaptureForm = ({ job, name, phone, email, handleChange }) => {
+    const onChange = e => {
+        const text = e.target.value;
+        switch (e.target.name) {
+            case 'name':
+                handleChange(text, phone, email);
+                break;
+            case 'phone':
+                handleChange(name, text, email);
+                break;
+            case 'email':
+                handleChange(name, phone, text);
+                break;
+            default:
+                console.log('unknown input name');
+        }
+    }
 
-export default pure(JobDetailCard)
+    return (
+        <div className="container whiteBG">
+            <div className="details">
+                <div className="row">
+                    <div className="col-12">
+                        <ContactSpan>How do we contact you?</ContactSpan>
+                    </div>
+                    <div className="col-6">
+                        <span className="city">{job.PickCity} - {job.DropCity}</span>
+                    </div>
+                    <div className="col-6 textRight">
+                        <span className="city">{job.QuotePrice}</span>
+                    </div>
+                    <OrangeHr />
+                </div>
+                <FormWrapper>
+                    <div className="form-group">
+                        <FormLabel for="name">FULL NAME</FormLabel>
+                        <input onChange={onChange} name="name" type="text" className="form-control" id="name" aria-describedby="name" placeholder="John Smith" value={name} />
+                    </div>
+                    <div className="form-group">
+                        <FormLabel for="phone">MOBILE NUBMER</FormLabel>
+                        <input onChange={onChange} type="text" name="phone" className="form-control" id="phone" aria-describedby="phone" placeholder="(305) 555-1212" value={phone} />
+                    </div>
+                    <div className="form-group">
+                        <FormLabel for="email">E-MAIL</FormLabel>
+                        <input onChange={onChange} name="email" type="email" className="form-control" id="email" aria-describedby="email" placeholder="jsmith@mail.com" value={email} />
+                    </div>
+                </FormWrapper>
+            </div>
+        </div>
+    )
+}
+
+
+export default pure(LeadCaptureForm)
