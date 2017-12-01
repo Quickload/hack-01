@@ -26,15 +26,14 @@ export const emailSentSuccessfully = () => ({
 export const sendEmailAsync = (user, job, email) => dispatch => {
     dispatch(isSendingEmail());
     console.log(user, job, email, 'send email');
+
     axios.post('https://us-central1-quickload-f4a75.cloudfunctions.net/feedbackEmail', {
-        params: { user, job, email }
+        user, job, email,
     })
         .then(function (response) {
-            console.log(response.data, 'email sent');
             dispatch(emailSentSuccessfully());
         })
         .catch(function (error) {
             console.log(error);
-            dispatch(failedToSendEmail(error));
         });
 };
