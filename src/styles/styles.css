@@ -31,6 +31,8 @@ input::placeholder{color:#F88900; font-weight: normal}
 
 .p0{padding:0px}
 
+.cursor{cursor:pointer;}
+
 /* color palette */
 .dark{color:#414141!important;}
 .lighter{color:#535353!important;}

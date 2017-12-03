@@ -23,7 +23,7 @@ const hoc = compose(
 
 export const JobDetailMap = ({location}) => (
   <GoogleMap
-    defaultZoom={12}
+    defaultZoom={11}
     defaultCenter={new google.maps.LatLng(location.lat, location.lng)}
   >
     <Marker

@@ -82,7 +82,17 @@ const hoc = compose(
   pure,
 );
 
-export const Header = ({ selectedJob, currentRoute, headerRedirect, submitRedirect, clearSelectedJob, submitFeedback, email, user, isFetchingUser }) => (
+export const Header = ({
+  selectedJob,
+  currentRoute,
+  headerRedirect,
+  submitRedirect,
+  clearSelectedJob,
+  submitFeedback,
+  email,
+  user,
+  isFetchingUser,
+}) => (
   <HeaderWrapper>
     {selectedJob ?
       <div className="row">
