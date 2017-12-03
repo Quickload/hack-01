@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { compose, pure, lifecycle } from 'recompose';
+import { compose, pure, lifecycle, withHandlers } from 'recompose';
+import { withRouter } from 'react-router'
 import styled from 'styled-components';
 
 import App from './App';
+import JobCard from '../components/JobCard';
 import Loader from '../components/shared/Loader';
-import { getIsFetchingSelectedJob, getSelectedJob } from '../reducers/jobs/selector';
 import { fetchSelectedJobAsync } from '../actions/doFetchSelectedJobAsync';
-// import { fetchUserAsync } from '../actions/doFetchUserAsync';
 import nothingHereYet from '../images/nothinghereyet.png';
 import {
-    // getIsFetchingUser,
-    getUser,
+    getIsFetchingUser,
+    getMyJobs,
 } from '../reducers/user/selector';
 
 
@@ -35,13 +35,18 @@ const Img = styled.img`
 `
 
 const hoc = compose(
+    withRouter,
     connect((state) => ({
-        isFetching: getIsFetchingSelectedJob(state),
-        user: getUser(state),
-        selectedJob: getSelectedJob(state),
+        isFetching: getIsFetchingUser(state),
+        myJobs: getMyJobs(state),
     }), (dispatch) => ({
         fetchSelectedJob: (id) => dispatch(fetchSelectedJobAsync(id)),
     })),
+    withHandlers({
+        cardRedirect: ({ history }) => id => () => {
+            history.push(`/job/${id}`);
+        },
+    }),
     lifecycle({
         componentDidMount() {
             const { fetchSelectedJob } = this.props;
@@ -52,11 +57,11 @@ const hoc = compose(
     pure,
 );
 
-const MyJobs = ({ isFetching, selectedJob }) => (
+const MyJobs = ({ isFetching, myJobs, cardRedirect }) => (
     <App>
         {isFetching ?
             <Loader />
-            :
+        :
             <div className="container whiteBG">
                 <div className="details">
                     <div className="row">
@@ -65,9 +70,17 @@ const MyJobs = ({ isFetching, selectedJob }) => (
                         </div>
                         <OrangeHr />
                     </div>
-                    <div className="text-center">
-                        <Img src={nothingHereYet} alt="nojobs" />
-                    </div>
+                    {myJobs && myJobs.length ?
+                        myJobs.map(job =>
+                            <JobCard
+                            key={Math.random().toString(36).substring(2, 15)}
+                            cardRedirect={cardRedirect(job.jobId)} job={job} />
+                        )
+                    :
+                        <div className="text-center">
+                            <Img src={nothingHereYet} alt="nojobs" />
+                        </div>
+                    }
                 </div>
             </div>
         }

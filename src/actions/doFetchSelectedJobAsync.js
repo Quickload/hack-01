@@ -35,6 +35,7 @@ export const clearSelectedJobAction = () => dispatch => {
 }
 
 export const fetchSelectedJobAsync = jobId => dispatch => {
+  if (!jobId) return false;
   dispatch(isFetchingSelectedJob());
 
   axios.get(`${apiUrl}/job?jobId=${jobId}`)

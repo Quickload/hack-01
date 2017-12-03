@@ -11,3 +11,13 @@ export const getUser = createSelector(
   getUserState,
   user => (user && user.user) || null
 );
+
+export const getisFetchingUser = createSelector(
+  getUser,
+  user => (user && user.isFetching) || null
+);
+
+export const getMyJobs = createSelector(
+  getUser,
+  user => (user && user.acceptedJobs) || null
+);
