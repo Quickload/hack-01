@@ -19,7 +19,6 @@ const hoc = compose(
     withState('coordLocation', 'setCoordLocation', PICKUP_LAT_LONG),
     withHandlers({
         loadMap: ({setCoordLocation}) => latLong => () =>{
-            console.log(latLong);
             setCoordLocation(latLong);
         }
     }),
