@@ -1,39 +1,19 @@
 import React from 'react';
 import { pure } from 'recompose';
 
-const AccessorialTypeOptions = () => (
+import {FilterCheckbox} from './FilterCheckbox';
+
+const AccessorialTypeOptions = props => (
   <div className="row">
     <div className="col-12 searchTop">
-      <div className="float-left checks">
-        <input type="checkbox" id="Forklift" />
-        <label htmlFor="Forklift">
-          Forklift
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="Liftgate" />
-        <label htmlFor="Liftgate">
-          Liftgate
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="Tarp" />
-        <label htmlFor="Tarp">
-          Tarp
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="Overweight" />
-        <label htmlFor="Overweight">
-          Overweight
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="SuperDuperLongOption" />
-        <label htmlFor="SuperDuperLongOption">
-          Super Duper Long Option
-        </label>
-      </div>
+      <FilterCheckbox id="Thermal" value="Thermal" {...props} />
+      <FilterCheckbox id="SideOpen" value="Side Open" {...props} />
+      <FilterCheckbox id="CarCarrier" value="Car Carrier" {...props} />
+      <FilterCheckbox id="OpenTop" value="Open Top" {...props} />
+      <FilterCheckbox id="Forklift" value="Forklift" {...props} />
+      <FilterCheckbox id="Liftgate" value="Liftgate" {...props} />
+      <FilterCheckbox id="Tarp" value="Tarp" {...props} />
+      <FilterCheckbox id="Overweight" value="Overweight" {...props} />
     </div>
   </div>
 );

@@ -20,10 +20,10 @@ import {
 const hoc = compose(
   withState('filterBy', 'setFilterBy', FILTER_BY_PICKUP_CITY),
   withHandlers({
-    handleChangeFilterBy: ({setFilterBy}) => selectedFilterBy => {
+    handleChangeFilterBy: ({setFilterBy}) => selectedFilterBy => () => {
       setFilterBy(selectedFilterBy)
     },
-    removeTag: ({tags, setTags}) => tag => {
+    removeTag: ({tags, setTags}) => tag => () => {
       const index = tags.indexOf(tag);
       const updatedTags = tags.slice();
       if (index > -1) {
@@ -33,14 +33,35 @@ const hoc = compose(
     },
     addTag: ({tags, setTags, searchValue, handleSearchInput}) => () => {
       if (!searchValue || !searchValue.length) return false;
-      setTags([
-        ...tags,
-        searchValue,
-      ]);
-      handleSearchInput(null, '');
+      const index = tags.indexOf(searchValue);
+      if (index === -1) {
+        setTags([
+          ...tags,
+          searchValue,
+        ]);
+        handleSearchInput(null, '');
+      }
     },
     resetTags: ({setTags}) => () => {
       setTags(['Near Me']);
+    },
+    handleCheckboxOnChange: ({tags, setTags}) => e => {
+      const value = e.target.value;
+      const index = tags.indexOf(value);
+      if (index === -1) {
+        setTags([
+          ...tags,
+          value,
+        ]);
+      } else {
+        const updatedTags = tags.slice();
+        updatedTags.splice(index, 1);
+        setTags(updatedTags);
+      }
+    },
+    checkIfIsChecked: ({tags}) => e => {
+      console.log(e.target);
+      return true;
     },
   }),
   pure,
@@ -59,6 +80,8 @@ const Filter = ({
   resetTags,
   sortBy,
   handleChangeSortBy,
+  handleCheckboxOnChange,
+  checkIfIsChecked,
 }) => (
   <div className="whiteBG">
     <div className="searchHeader">
@@ -75,19 +98,19 @@ const Filter = ({
               <span className="filterBy">Filter By:</span> {filterBy}
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a className="dropdown-item" onClick={() => handleChangeFilterBy(FILTER_BY_PICKUP_CITY)}>
+              <a className="dropdown-item" onClick={handleChangeFilterBy(FILTER_BY_PICKUP_CITY)}>
                 {FILTER_BY_PICKUP_CITY}
               </a>
-              <a className="dropdown-item" onClick={() => handleChangeFilterBy(FILTER_BY_DROPOFF_CITY)}>
+              <a className="dropdown-item" onClick={handleChangeFilterBy(FILTER_BY_DROPOFF_CITY)}>
                 {FILTER_BY_DROPOFF_CITY}
               </a>
-              <a className="dropdown-item" onClick={() => handleChangeFilterBy(FILTER_BY_LOAD_TYPE)}>
+              <a className="dropdown-item" onClick={handleChangeFilterBy(FILTER_BY_LOAD_TYPE)}>
                 {FILTER_BY_LOAD_TYPE}
               </a>
-              <a className="dropdown-item" onClick={() => handleChangeFilterBy(FILTER_BY_TRUCK_TYPE)}>
+              <a className="dropdown-item" onClick={handleChangeFilterBy(FILTER_BY_TRUCK_TYPE)}>
                 {FILTER_BY_TRUCK_TYPE}
               </a>
-              <a className="dropdown-item" onClick={() => handleChangeFilterBy(FILTER_BY_ACCESSORIAL)}>
+              <a className="dropdown-item" onClick={handleChangeFilterBy(FILTER_BY_ACCESSORIAL)}>
                 {FILTER_BY_ACCESSORIAL}
               </a>
             </div>
@@ -105,6 +128,9 @@ const Filter = ({
       filterBy={filterBy}
       searchValue={searchValue}
       handleSearchInput={handleSearchInput}
+      handleCheckboxOnChange={handleCheckboxOnChange}
+      checkIfIsChecked={checkIfIsChecked}
+      tags={tags}
     />
 
     <div className="lightBG tagArea">
@@ -112,7 +138,7 @@ const Filter = ({
         <Tag
           key={Math.random().toString(36).substring(2, 15)}
           label={tag}
-          onClick={() => removeTag(tag)}
+          onClick={removeTag(tag)}
         />
       ))}
     </div>

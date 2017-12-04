@@ -1,27 +1,17 @@
 import React from 'react';
 import { pure } from 'recompose';
 
-const TruckTypeOptions = () => (
+import {FilterCheckbox} from './FilterCheckbox';
+
+const TruckTypeOptions = props => (
   <div className="row">
     <div className="col-12 searchTop">
-      <div className="float-left checks">
-        <input type="checkbox" id="Flatbed" />
-        <label htmlFor="Flatbed">
-          Flatbed
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="DryVan" />
-        <label htmlFor="DryVan">
-          Dry Van
-        </label>
-      </div>
-      <div className="float-left checks">
-        <input type="checkbox" id="Reefer" />
-        <label htmlFor="Reefer">
-          Reefer
-        </label>
-      </div>
+      <FilterCheckbox id="Flatbed" value="Flatbed" {...props} />
+      <FilterCheckbox id="FlatRack" value="Flat Rack" {...props} />
+      <FilterCheckbox id="Dry" value="Dry" {...props} />
+      <FilterCheckbox id="Tunnel" value="Tunnel" {...props} />
+      <FilterCheckbox id="Tank" value="Tank" {...props} />
+      <FilterCheckbox id="HalfHeight" value="Half Height" {...props} />
     </div>
   </div>
 );
