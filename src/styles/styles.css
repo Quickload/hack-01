@@ -1,5 +1,6 @@
 @charset "UTF-8";
 /* Quick load */
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
 body{	margin:0px; padding:0px; background-color:#F7F7F7;	font-family: 'Roboto', sans-serif;	color:#535353; letter-spacing:-0.5px; padding-top:70px;}
 
@@ -72,7 +73,7 @@ header{position:fixed; top:0px; left:0px; width:100%; height:70px; padding:15px;
 .removeTag{padding:0px 5px; display:inline-block}
 .search{    margin-left: -15px; border: none; padding: 0px 15px; width: 100%;}
 .dropdown-menu{width:100%}
-.checks{ padding: 14px 10px}
+.checks{ padding: 10px 12px}
 .checks input{margin-right:5px}
 .checks input:checked label{color:#F88900}
 .searchCTAs{padding:20px 0px;}
@@ -113,3 +114,28 @@ img.pickIcon{width:50px; height:auto; margin-right:10px;}
 .status{padding:25px 15px; font-size:16px; color:#999}
 .status strong{font-weight: bold; color: #535353}
 .orangeBG a.btn.orangeBG {  border: 1px solid #fff!important;  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.17);}
+
+
+/*** custom checkboxes ***/
+
+input[type=checkbox] {
+  display: none;
+}
+input[type=checkbox] + label {
+  cursor: pointer;
+}
+input[type=checkbox] + label:before {
+  display: inline-block;
+  width: 34px;
+  font-family: FontAwesome;
+  font-size: 24px;
+  text-align: center;
+  vertical-align: middle;
+}
+input[type=checkbox] + label:before {
+  content: "\f096";
+}
+input[type=checkbox]:checked + label:before {
+  content: "\f14a";
+  color:#FF6A19;
+}

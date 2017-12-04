@@ -1,7 +1,7 @@
 import React from 'react';
 import { pure } from 'recompose';
 
-const TruckTypeOptions = () => (
+const LoadTypeOptions = () => (
   <div className="row">
     <div className="col-12 searchTop">
       <div className="float-left checks">
@@ -11,19 +11,19 @@ const TruckTypeOptions = () => (
         </label>
       </div>
       <div className="float-left checks">
-        <input type="checkbox" id="DryVan" />
-        <label htmlFor="DryVan">
-          Dry Van
+        <input type="checkbox" id="FTL" />
+        <label htmlFor="FTL">
+          FTL
         </label>
       </div>
       <div className="float-left checks">
-        <input type="checkbox" id="Reefer" />
-        <label htmlFor="Reefer">
-          Reefer
+        <input type="checkbox" id="LTL" />
+        <label htmlFor="LTL">
+          LTL
         </label>
       </div>
     </div>
   </div>
 );
 
-export default pure(TruckTypeOptions);
+export default pure(LoadTypeOptions);

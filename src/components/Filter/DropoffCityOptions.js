@@ -3,7 +3,7 @@ import {pure} from 'recompose';
 
 import mapIcon from '../../images/icons/icon-map-near.svg';
 
-const PickupCityOptions = ({
+const DropoffCityOptions = ({
   searchValue,
   handleSearchInput,
 }) => (
@@ -13,11 +13,11 @@ const PickupCityOptions = ({
       <input
         type="text"
         className="secOrange citySearch"
-        placeholder="Enter Pickup City Name"
+        placeholder="Enter Dropoff City Name"
         value={searchValue}
         onChange={handleSearchInput} />
     </div>
   </div>
 );
 
-export default pure(PickupCityOptions);
+export default pure(DropoffCityOptions);
